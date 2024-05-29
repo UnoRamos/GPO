@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core'); // Use puppeteer-core instead of puppeteer
 const path = require('path');
 
 const app = express();
@@ -24,6 +24,7 @@ app.post('/generate-pdf', async (req, res) => {
         // Launch a new browser instance if not already running
         if (!browserInstance) {
             browserInstance = await puppeteer.launch({
+                executablePath: '/path/to/chrome', // Specify the path to your Chrome executable
                 headless: true,
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
@@ -48,15 +49,6 @@ app.post('/generate-pdf', async (req, res) => {
         console.error('Error generating PDF:', error);
         res.status(500).send('Error generating PDF');
     }
-});
-
-// Handle graceful shutdown
-process.on('SIGINT', async () => {
-    if (browserInstance) {
-        await browserInstance.close();
-        console.log('Browser instance closed gracefully.');
-    }
-    process.exit(0);
 });
 
 const PORT = process.env.PORT || 3000;
