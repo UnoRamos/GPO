@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .signature-pad {
+            border: 1px solid #ddd;
+            background-color: #fff;
+            height: 200px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Signature Pad 1
+            const canvas1 = document.getElementById('signature-pad1');
+            const signaturePad1 = new SignaturePad(canvas1, {
+                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
+                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
+            });
+
+            const clearButton1 = document.getElementById('clear1');
+            const signatureInput1 = document.getElementById('signature1');
+
+            clearButton1.addEventListener('click', () => {
+                signaturePad1.clear();
+            });
+
+            // Signature Pad 2
+            const canvas2 = document.getElementById('signature-pad2');
+            const signaturePad2 = new SignaturePad(canvas2, {
+                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
+                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
+            });
+
+            const clearButton2 = document.getElementById('clear2');
+            const signatureInput2 = document.getElementById('signature2');
+
+            clearButton2.addEventListener('click', () => {
+                signaturePad2.clear();
+            });
+
+            // Signature Pad 3
+            const canvas3 = document.getElementById('signature-pad3');
+            const signaturePad3 = new SignaturePad(canvas3, {
+                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
+                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
+            });
+
+            const clearButton3 = document.getElementById('clear3');
+            const signatureInput3 = document.getElementById('signature3');
+
+            clearButton3.addEventListener('click', () => {
+                signaturePad3.clear();
+            });
+
+            document.getElementById('graduationForm').addEventListener('submit', (e) => {
+                if (signaturePad1.isEmpty() || signaturePad2.isEmpty() || signaturePad3.isEmpty()) {
+                    alert("Please provide both signatures first.");
+                    e.preventDefault();
+                } else {
+                    signatureInput1.value = signaturePad1.toDataURL();
+                    signatureInput2.value = signaturePad2.toDataURL();
+                    signatureInput3.value = signaturePad2.toDataURL();
+                }
+            });
+        });
+        window.onload = function() {
+        var financialSupport = '<%= financial_support %>';
+        if (financialSupport === 'parents') {
+            document.getElementById('financial_support_parents').checked = true;
+        } else if (financialSupport === 'self') {
+            document.getElementById('financial_support_self').checked = true;
+        } else if (financialSupport === 'loan') {
+            document.getElementById('financial_support_loan').checked = true;
+        } else if (financialSupport === 'scholarship') {
+            document.getElementById('financial_support_scholarship').checked = true;
+        }
+    };
+    </script>
+    <div class="container">
+        <h1>Graduation Program Application Form</h1>
+        
+        <h2>I. Personal Information</h2>
+        <p><%= last_name %></p>
+        <p><%= sex %></p>
+        <p><%= date_of_birth %></p>
+        <p><%= birthplace %></p>
+        
+        <h2>Present Address</h2>
+        <p><%= present_address %></p>
+        
+        <h2>Permanent Address</h2>
+        <p><%= permanent_address %></p>
+        
+        <h2>Citizenship</h2>
+        <p><%= citizenship %></p>
+        
+        <h2>Civil Status</h2>
+        <p><%= civil_status %></p>
+        
+        <h2>Spouse Information (if applicable)</h2>
+        <p><%= spouse_name %></p>
+        
+        <h2>Children Information (if applicable)</h2>
+        <p><%= child_name_1 %></p>
+        <p><%= child_dob_1 %></p>
+        <p><%= child_sex_1 %></p>
+        
+        <h2>II. Educational Background</h2>
+        <table>
+            <tr>
+                <th>School/College/University Attended</th>
+                <th>Educational Attainment</th>
+                <th>Inclusive Dates</th>
+                <th>Honors Received</th>
+                <th>Weighted Average</th>
+            </tr>
+            <tr>
+                <td><%= school_name_1 %></td>
+                <td><%= degree_1 %></td>
+                <td><%= date_1 %></td>
+                <td><%= honors_1 %></td>
+                <td><%= average_1 %></td>
+            </tr>
+            <tr>
+                <td><%= school_name_2 %></td>
+                <td><%= degree_2 %></td>
+                <td><%= date_2 %></td>
+                <td><%= honors_2 %></td>
+                <td><%= average_2 %></td>
+            </tr>
+        </table>
+        
+        <h2>III. Examinations Passed</h2>
+        <table>
+            <tr>
+                <th>Nature of Examination</th>
+                <th>Date Taken</th>
+                <th>Rating</th>
+            </tr>
+            <tr>
+                <td><%= exam_nature_1 %></td>
+                <td><%= exam_date_1 %></td>
+                <td><%= exam_rating_1 %></td>
+            </tr>
+            <tr>
+                <td><%= exam_nature_2 %></td>
+                <td><%= exam_date_2 %></td>
+                <td><%= exam_rating_2 %></td>
+            </tr>
+        </table>
+        
+        <h2>IV. Employment History</h2>
+        <table>
+            <tr>
+                <th>Agency/Company Name</th>
+                <th>Address</th>
+                <th>Position</th>
+                <th>Inclusive Dates of Employment</th>
+                <th>Nature of Work</th>
+            </tr>
+            <tr>
+                <td><%= employment_company_1 %></td>
+                <td><%= employment_address_1 %></td>
+                <td><%= employment_position_1 %></td>
+                <td><%= employment_dates_1 %></td>
+                <td><%= employment_work_1 %></td>
+            </tr>
+            <tr>
+                <td><%= employment_company_2 %></td>
+                <td><%= employment_address_2 %></td>
+                <td><%= employment_position_2 %></td>
+                <td><%= employment_dates_2 %></td>
+                <td><%= employment_work_2 %></td>
+            </tr>
+            <tr>
+                <td><%= employment_company_3 %></td>
+                <td><%= employment_address_3 %></td>
+                <td><%= employment_position_3 %></td>
+                <td><%= employment_dates_3 %></td>
+                <td><%= employment_work_3 %></td>
+            </tr>
+            <tr>
+                <td><%= employment_company_4 %></td>
+                <td><%= employment_address_4 %></td>
+                <td><%= employment_position_4 %></td>
+                <td><%= employment_dates_4 %></td>
+                <td><%= employment_work_4 %></td>
+            </tr>
+            <tr>
+                <td><%= employment_company_5 %></td>
+                <td><%= employment_address_5 %></td>
+                <td><%= employment_position_5 %></td>
+                <td><%= employment_dates_5 %></td>
+                <td><%= employment_work_5 %></td>
+            </tr>
+        </table>
+        <h2>V. Other Information</h2>
+        <!-- Publications Section -->
+        <div class="subsection">
+            <h3>Publications</h3>
+            <table>
+                <tr>
+                    <th>Title of Publication</th>
+                    <th>Place of Publication</th>
+                    <th>Classification</th>
+                </tr>
+                <tr>
+                    <td><%= publication_title_1 %></td>
+                    <td><%= publication_place_1 %></td>
+                    <td><%= publication_classification_1 %></td>
+                </tr>
+                <tr>
+                    <td><%= publication_title_2 %></td>
+                    <td><%= publication_place_2 %></td>
+                    <td><%= publication_classification_2 %></td>
+                </tr>
+                <tr>
+                    <td><%= publication_title_3 %></td>
+                    <td><%= publication_place_3 %></td>
+                    <td><%= publication_classification_3 %></td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Awards Section -->
+        <div class="subsection">
+            <h3>Awards Received</h3>
+            <table>
+                <tr>
+                    <th>Nature of Award</th>
+                    <th>Awarded By</th>
+                    <th>Classification</th>
+                </tr>
+                <tr>
+                    <td><%= award_title_1 %></td>
+                    <td><%= award_source_1 %></td>
+                    <td><%= award_classification_1 %></td>
+                </tr>
+                <tr>
+                    <td><%= award_title_2 %></td>
+                    <td><%= award_source_2 %></td>
+                    <td><%= award_classification_2 %></td>
+                </tr>
+                <tr>
+                    <td><%= award_title_3 %></td>
+                    <td><%= award_source_3 %></td>
+                    <td><%= award_classification_3 %></td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Involvement/Membership Section -->
+        <div class="subsection">
+            <h3>Involvement/Membership</h3>
+            <table>
+                <tr>
+                    <th>Name of Organization</th>
+                    <th>Position</th>
+                    <th>Accomplishments</th>
+                </tr>
+                <tr>
+                    <td><%= organization_name_1 %></td>
+                    <td><%= organization_position_1 %></td>
+                    <td><%= organization_accomplishments_1 %></td>
+                </tr>
+                <tr>
+                    <td><%= organization_name_2 %></td>
+                    <td><%= organization_position_2 %></td>
+                    <td><%= organization_accomplishments_2 %></td>
+                </tr>
+                <tr>
+                    <td><%= organization_name_3 %></td>
+                    <td><%= organization_position_3 %></td>
+                    <td><%= organization_accomplishments_3 %></td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Seminars/Trainings Section -->
+        <div class="subsection">
+            <h3>Seminars/Trainings Attended</h3>
+            <table>
+                <tr>
+                    <th>Seminars Attended</th>
+                    <th>Level</th>
+                    <th>Nature of Participation</th>
+                    <th>Date Attended</th>
+                </tr>
+                <tr>
+                    <td><%= seminar_name_1 %></td>
+                    <td><%= seminar_level_1 %></td>
+                    <td><%= seminar_participation_1 %></td>
+                    <td><%= seminar_date_1 %></td>
+                </tr>
+                <tr>
+                    <td><%= seminar_name_2 %></td>
+                    <td><%= seminar_level_2 %></td>
+                    <td><%= seminar_participation_2 %></td>
+                    <td><%= seminar_date_2 %></td>
+                </tr>
+                <tr>
+                    <td><%= seminar_name_3 %></td>
+                    <td><%= seminar_level_3 %></td>
+                    <td><%= seminar_participation_3 %></td>
+                    <td><%= seminar_date_3 %></td>
+                </tr>
+            </table>
+        </div>
+        <div class="section">
+            <h2>Means of Financial Support</h2>
+            <label><input type="checkbox" name="financial_support" id="parents" <% if (financial_support === 'parents') { %> checked <% } %>> Parents</label>
+            <label><input type="checkbox" name="financial_support" id="self" <% if (financial_support === 'self') { %> checked <% } %>> Self</label>
+            <label><input type="checkbox" name="financial_support" id="loan" <% if (financial_support === 'loan') { %> checked <% } %>> Loan</label>
+            <label><input type="checkbox" name="financial_support" id="scholarship" <% if (financial_support === 'scholarship') { %> checked <% } %>> Scholarship</label>
+            <div class="form-group">
+                <label for="annual_income">If self-supporting, state annual gross income:</label>
+                <input type="text" name="annual_income" id="annual_income" value="<%= annual_income %>">
+            </div>
+        </div>
+
+        
+        <div class="section">
+            <h2>Questions</h2>
+            <label for="conviction">1. Have you ever been convicted for violating any law, decree, ordinance, or regulations by any court or tribunal?</label>
+            <label><input type="radio" name="conviction" value="yes" <%= conviction === 'yes' ? 'checked' : '' %>> Yes</label>
+            <label><input type="radio" name="conviction" value="no" <%= conviction === 'no' ? 'checked' : '' %>> No</label>
+
+            <label for="pending_case">2. Do you have any pending administrative/criminal case?</label>
+            <label><input type="radio" name="pending_case" value="yes" <%= pending_case === 'yes' ? 'checked' : '' %>> Yes</label>
+            <label><input type="radio" name="pending_case" value="no" <%= pending_case === 'no' ? 'checked' : '' %>> No</label>
+            
+            <label for="disciplinary_action">3. Have you ever been subject to any disciplinary action from any institution attended?</label>
+            <label><input type="radio" name="disciplinary_action" value="yes" <%= disciplinary_action === 'yes' ? 'checked' : '' %>> Yes</label>
+            <label><input type="radio" name="disciplinary_action" value="no" <%= disciplinary_action === 'no' ? 'checked' : '' %>> No</label>
+        </div>
+
+        <h2>VI. References</h2>
+        <p><%= reference_1 %></p>
+        <p><%= reference_2 %></p>
+        
+    
+        <div class="section">
+            <h2>Reasons for Applying to the Program</h2>
+            <label for="reason_for_applying">Write an essay of 200-300 words on your purpose(s) in seeking admission to the graduate program and what the program can contribute to your current or preferred career:</label>
+            <%- text.replace(/\n/g, '<br/>') %>
+            <textarea name="reason_for_applying" id="reason_for_applying" rows="10" required><%= reason_for_applying %></textarea>
+        </div>
+    
+        <div class="section">
+            <h2>Applicant's Declaration</h2>
+            <p>This application is not valid unless signed by the applicant.</p>
+            <ul>
+                <li>I understand and will comply with the statutes, rules, and regulations of the University of the Philippines.</li>
+                <li>I understand that the University of the Philippines or the Institute/Department/College I am intending to apply in may reverse any admission decision made based on incorrect or incomplete information at the time of lodging this application.</li>
+                <li>I agree to notify the responsible office immediately if there is any change to the information I have given in this application.</li>
+                <li>I acknowledge that the provision of incorrect information or documentary may result in the cancellation of my enrollment or in any sanctions therein.</li>
+                <li>I declare that the information given on this form is true and correct.</li>
+            </ul>
+            <div class="form-group">
+                <label for="signature1">Signature:</label>
+                <canvas id="signature-pad1" class="signature-pad" width="1530" height="200"></canvas>
+                <input type="hidden" name="signature1" id="signature1" value="<%= signature1 %>" required>
+            </div>
+            <div class="form-group">
+                <label for="printed_name">Printed Name:</label>
+                <input type="text" name="printed_name" id="printed_name" value="<%= printed_name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="date_signed">Date:</label>
+                <input type="date" name="date_signed" id="date_signed" value="<%= date_signed %>" required>
+            </div>
+        </div>
+    
+        <div class="section">
+            <h2>For GPC Use Only</h2>
+            <label for="gpc_decision">Tick Decision:</label>
+            <select name="gpc_decision" id="gpc_decision">
+                <option value="">Select Decision</option>
+                <option value="accepted" <%= gpc_decision === 'accepted' ? 'selected' : '' %>>Accepted</option>
+                <option value="conditional_acceptance" <%= gpc_decision === 'conditional_acceptance' ? 'selected' : '' %>>Conditional Acceptance</option>
+                <option value="not_accepted" <%= gpc_decision === 'not_accepted' ? 'selected' : '' %>>Not Accepted</option>
+            </select>
+            <label for="decision_date">Date:</label>
+            <input type="date" name="decision_date" id="decision_date" value="<%= decision_date %>">
+            <div class="form-group">
+                <label for="signature3">Signature:</label>
+                <canvas id="signature-pad3" class="signature-pad" width="1530" height="200"></canvas>
+                <input type="hidden" name="signature3" id="signature3" value="<%= signature3 %>">
+            </div>
+            <label for="remarks_conditions">Remarks/Conditions:</label>
+            <textarea name="remarks_conditions" id="remarks_conditions" rows="3"><%= remarks_conditions %></textarea>
+        </div>
+
+    
+        <div class="section">
+            <h2>University of the Philippines</h2>
+            <p>REVISED CONSENT AND ASSENT FORM FOR NEW STUDENTS</p>
+            <p>I have read the University of the Philippines' Privacy Notice for Student.</p>
+            <p>I grant my consent to and recognize the authority of the University of the Philippines to process my personal and sensitive personal information, pursuant to the abovementioned Privacy Notice and applicable laws in connection with my application to shift/transfer/ be admitted as a student of University of the Philippines.</p>
+            <p>I likewise consent to and recognize University of the Philippines's authority to post online and/or in University of the Philippines bulletin boards at its option my name and program in the event i qualify for admission in order for the University to comply with its Charter and uphold the principle of transparency in the admissions process.</p>
+            <div class="form-group">
+                <label for="signature2">Signature:</label>
+                <canvas id="signature-pad2" class="signature-pad" width="1530" height="200"></canvas>
+                <input type="hidden" name="signature2" id="signature2" value="<%= signature2 %>" required>
+            </div>
+            <div class="form-group">
+                <label for="printed_name1">Printed Name:</label>
+                <input type="text" name="printed_name1" id="printed_name1" value="<%= printed_name1 %>" required>
+            </div>
+            <div class="form-group">
+                <label for="date_signed1">Date:</label>
+                <input type="date" name="date_signed1" id="date_signed1" value="<%= date_signed1 %>" required>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

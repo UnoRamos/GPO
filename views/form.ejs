@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduation Program Application Form</title>
+    <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .signature-pad {
+            border: 1px solid #ddd;
+            background-color: #fff;
+            height: 200px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Signature Pad 1
+            const canvas1 = document.getElementById('signature-pad1');
+            const signaturePad1 = new SignaturePad(canvas1, {
+                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
+                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
+            });
+
+            const clearButton1 = document.getElementById('clear1');
+            const signatureInput1 = document.getElementById('signature1');
+
+            clearButton1.addEventListener('click', () => {
+                signaturePad1.clear();
+            });
+
+            // Signature Pad 2
+            const canvas2 = document.getElementById('signature-pad2');
+            const signaturePad2 = new SignaturePad(canvas2, {
+                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
+                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
+            });
+
+            const clearButton2 = document.getElementById('clear2');
+            const signatureInput2 = document.getElementById('signature2');
+
+            clearButton2.addEventListener('click', () => {
+                signaturePad2.clear();
+            });
+
+            // Signature Pad 3
+            const canvas3 = document.getElementById('signature-pad3');
+            const signaturePad3 = new SignaturePad(canvas3, {
+                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
+                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
+            });
+
+            const clearButton3 = document.getElementById('clear3');
+            const signatureInput3 = document.getElementById('signature3');
+
+            clearButton3.addEventListener('click', () => {
+                signaturePad3.clear();
+            });
+
+            document.getElementById('graduationForm').addEventListener('submit', (e) => {
+                if (signaturePad1.isEmpty() || signaturePad2.isEmpty() || signaturePad3.isEmpty()) {
+                    alert("Please provide both signatures first.");
+                    e.preventDefault();
+                } else {
+                    signatureInput1.value = signaturePad1.toDataURL();
+                    signatureInput2.value = signaturePad2.toDataURL();
+                    signatureInput3.value = signaturePad2.toDataURL();
+                }
+            });
+        });
+    </script>
+    <main>
+        <div class="container">
+            <form id="graduationForm" method="POST" action="/generate-pdf">
+                <!-- Personal Information Section -->
+                <div class="section">
+                    <h2>I. Personal Information</h2>
+                    <div class="form-group">
+                        <label for="last_name">Last Name, First, Suffix (if applicable), Middle:</label>
+                        <input type="text" name="last_name" id="last_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex">Sex:</label>
+                        <select name="sex" id="sex" required>
+                            <option value="">Select Sex</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_of_birth">Date of Birth:</label>
+                        <input type="date" name="date_of_birth" id="date_of_birth" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthplace">Place of Birth:</label>
+                        <input type="text" name="birthplace" id="birthplace" required>
+                    </div>
+                </div>
+                
+                <!-- Present Address Section -->
+                <div class="section">
+                    <h2>Present Address</h2>
+                    <div class="form-group">
+                        <label for="present_address">House No., Street, Barangay, City/Municipality, Province:</label>
+                        <textarea name="present_address" id="present_address" required></textarea>
+                    </div>
+                </div>
+                
+                <!-- Permanent Address Section -->
+                <div class="section">
+                    <h2>Permanent Address</h2>
+                    <div class="form-group">
+                        <label for="permanent_address">House No., Street, Barangay, City/Municipality, Province:</label>
+                        <textarea name="permanent_address" id="permanent_address"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Citizenship Section -->
+                <div class="section">
+                    <h2>Citizenship</h2>
+                    <div class="form-group">
+                        <label for="citizenship">Citizenship:</label>
+                        <input type="text" name="citizenship" id="citizenship" required>
+                    </div>
+                </div>
+                
+                <!-- Civil Status Section -->
+                <div class="section">
+                    <h2>Civil Status</h2>
+                    <div class="form-group">
+                        <label for="civil_status">Select Civil Status:</label>
+                        <select name="civil_status" id="civil_status" required>
+                            <option value="">Select Status</option>
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="widowed">Widowed</option>
+                            <option value="separated">Separated</option>
+                            <option value="divorced">Divorced</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Spouse Information Section -->
+                <div class="section">
+                    <h2>Spouse Information (if applicable)</h2>
+                    <div class="form-group">
+                        <label for="spouse_name">Full Name of Spouse:</label>
+                        <input type="text" name="spouse_name" id="spouse_name">
+                    </div>
+                </div>
+                
+                <!-- Children Information Section -->
+                <div class="section">
+                    <h2>Children Information (if applicable)</h2>
+                    <div class="form-group">
+                        <label for="child_name_1">Child 1 Name:</label>
+                        <input type="text" name="child_name_1" id="child_name_1">
+                    </div>
+                    <div class="form-group">
+                        <label for="child_dob_1">Date of Birth:</label>
+                        <input type="date" name="child_dob_1" id="child_dob_1">
+                    </div>
+                    <div class="form-group">
+                        <label for="child_sex_1">Sex:</label>
+                        <select name="child_sex_1" id="child_sex_1">
+                            <option value="">Select Sex</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Educational Background Section -->
+                <div class="section">
+                    <h2>II. Educational Background</h2>
+                    <table>
+                        <tr>
+                            <th>School/College/University Attended</th>
+                            <th>Educational Attainment</th>
+                            <th>Inclusive Dates</th>
+                            <th>Honors Received</th>
+                            <th>Weighted Average</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="school_name_1"></td>
+                            <td><input type="text" name="degree_1"></td>
+                            <td><input type="text" name="date_1"></td>
+                            <td><input type="text" name="honors_1"></td>
+                            <td><input type="text" name="average_1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="school_name_2"></td>
+                            <td><input type="text" name="degree_2"></td>
+                            <td><input type="text" name="date_2"></td>
+                            <td><input type="text" name="honors_2"></td>
+                            <td><input type="text" name="average_2"></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Examinations Passed Section -->
+                <div class="section">
+                    <h2>III. Examinations Passed</h2>
+                    <table>
+                        <tr>
+                            <th>Nature of Examination</th>
+                            <th>Date Taken</th>
+                            <th>Rating</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="exam_nature_1"></td>
+                            <td><input type="date" name="exam_date_1"></td>
+                            <td><input type="text" name="exam_rating_1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="exam_nature_2"></td>
+                            <td><input type="date" name="exam_date_2"></td>
+                            <td><input type="text" name="exam_rating_2"></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Employment History Section -->
+                <div class="section">
+                    <h2>IV. Employment History</h2>
+                    <table>
+                        <tr>
+                            <th>Agency/Company Name</th>
+                            <th>Address</th>
+                            <th>Position</th>
+                            <th>Inclusive Dates of Employment</th>
+                            <th>Nature of Work</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="employment_company_1"></td>
+                            <td><input type="text" name="employment_address_1"></td>
+                            <td><input type="text" name="employment_position_1"></td>
+                            <td><input type="text" name="employment_dates_1"></td>
+                            <td><input type="text" name="employment_work_1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="employment_company_2"></td>
+                            <td><input type="text" name="employment_address_2"></td>
+                            <td><input type="text" name="employment_position_2"></td>
+                            <td><input type="text" name="employment_dates_2"></td>
+                            <td><input type="text" name="employment_work_2"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="employment_company_3"></td>
+                            <td><input type="text" name="employment_address_3"></td>
+                            <td><input type="text" name="employment_position_3"></td>
+                            <td><input type="text" name="employment_dates_3"></td>
+                            <td><input type="text" name="employment_work_3"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="employment_company_4"></td>
+                            <td><input type="text" name="employment_address_4"></td>
+                            <td><input type="text" name="employment_position_4"></td>
+                            <td><input type="text" name="employment_dates_4"></td>
+                            <td><input type="text" name="employment_work_4"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="employment_company_5"></td>
+                            <td><input type="text" name="employment_address_5"></td>
+                            <td><input type="text" name="employment_position_5"></td>
+                            <td><input type="text" name="employment_dates_5"></td>
+                            <td><input type="text" name="employment_work_5"></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Other Information Section -->
+                <div class="section">
+                    <h2>V. Other Information</h2>
+                    
+                    <!-- Publications Section -->
+                    <div class="subsection">
+                        <h3>Publications</h3>
+                        <table>
+                            <tr>
+                                <th>Title of Publication</th>
+                                <th>Place of Publication</th>
+                                <th>Classification</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="publication_title_1"></td>
+                                <td><input type="text" name="publication_place_1"></td>
+                                <td><input type="text" name="publication_classification_1"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="publication_title_2"></td>
+                                <td><input type="text" name="publication_place_2"></td>
+                                <td><input type="text" name="publication_classification_2"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="publication_title_3"></td>
+                                <td><input type="text" name="publication_place_3"></td>
+                                <td><input type="text" name="publication_classification_3"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <!-- Awards Section -->
+                    <div class="subsection">
+                        <h3>Awards Received</h3>
+                        <table>
+                            <tr>
+                                <th>Nature of Award</th>
+                                <th>Awarded By</th>
+                                <th>Classification</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="award_title_1"></td>
+                                <td><input type="text" name="award_source_1"></td>
+                                <td><input type="text" name="award_classification_1"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="award_title_2"></td>
+                                <td><input type="text" name="award_source_2"></td>
+                                <td><input type="text" name="award_classification_2"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="award_title_3"></td>
+                                <td><input type="text" name="award_source_3"></td>
+                                <td><input type="text" name="award_classification_3"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <!-- Involvement/Membership Section -->
+                    <div class="subsection">
+                        <h3>Involvement/Membership</h3>
+                        <table>
+                            <tr>
+                                <th>Name of Organization</th>
+                                <th>Position</th>
+                                <th>Accomplishments</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="organization_name_1"></td>
+                                <td><input type="text" name="organization_position_1"></td>
+                                <td><input type="text" name="organization_accomplishments_1"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="organization_name_2"></td>
+                                <td><input type="text" name="organization_position_2"></td>
+                                <td><input type="text" name="organization_accomplishments_2"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="organization_name_3"></td>
+                                <td><input type="text" name="organization_position_3"></td>
+                                <td><input type="text" name="organization_accomplishments_3"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <!-- Seminars/Trainings Section -->
+                    <div class="subsection">
+                        <h3>Seminars/Trainings Attended</h3>
+                        <table>
+                            <tr>
+                                <th>Seminars Attended</th>
+                                <th>Level</th>
+                                <th>Nature of Participation</th>
+                                <th>Date Attended</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="seminar_name_1"></td>
+                                <td><input type="text" name="seminar_level_1"></td>
+                                <td><input type="text" name="seminar_participation_1"></td>
+                                <td><input type="date" name="seminar_date_1"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="seminar_name_2"></td>
+                                <td><input type="text" name="seminar_level_2"></td>
+                                <td><input type="text" name="seminar_participation_2"></td>
+                                <td><input type="date" name="seminar_date_2"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="seminar_name_3"></td>
+                                <td><input type="text" name="seminar_level_3"></td>
+                                <td><input type="text" name="seminar_participation_3"></td>
+                                <td><input type="date" name="seminar_date_3"></td>
+                            </tr>
+                        </table>
+                        </div>
+                        </div>
+
+                                        <!-- Means of Financial Support Section -->
+                <div class="section">
+                    <h2>Means of Financial Support</h2>
+                    <label><input type="checkbox" name="financial_support" value="parents"> Parents</label>
+                    <label><input type="checkbox" name="financial_support" value="self"> Self</label>
+                    <label><input type="checkbox" name="financial_support" value="loan"> Loan</label>
+                    <label><input type="checkbox" name="financial_support" value="scholarship"> Scholarship</label>
+                    <div class="form-group">
+                        <label for="annual_income">If self-supporting, state annual gross income:</label>
+                        <input type="text" name="annual_income" id="annual_income">
+                    </div>
+                </div>
+
+                <!-- Questions Section -->
+                <div class="section">
+                    <h2>Questions</h2>
+                    <label for="conviction">1. Have you ever been convicted for violating any law, decree, ordinance, or regulations by any court or tribunal?</label>
+                    <label><input type="radio" name="conviction" value="yes"> Yes</label>
+                    <label><input type="radio" name="conviction" value="no"> No</label>
+                    
+                    <label for="pending_case">2. Do you have any pending administrative/criminal case?</label>
+                    <label><input type="radio" name="pending_case" value="yes"> Yes</label>
+                    <label><input type="radio" name="pending_case" value="no"> No</label>
+                    
+                    <label for="disciplinary_action">3. Have you ever been subject to any disciplinary action from any institution attended?</label>
+                    <label><input type="radio" name="disciplinary_action" value="yes"> Yes</label>
+                    <label><input type="radio" name="disciplinary_action" value="no"> No</label>
+                </div>
+  
+                        <!-- References Section -->
+                        <div class="section">
+                            <h2>VI. References</h2>
+                            <div class="form-group">
+                            <label for="reference_1">Name:</label>
+                            <input type="text" name="reference_1" id="reference_1">
+                            </div>
+                            <div class="form-group">
+                            <label for="reference_2">Name:</label>
+                            <input type="text" name="reference_2" id="reference_2">
+                            </div>
+                            </div>
+                            <div class="section">
+                                <h2>Reasons for Applying to the Program</h2>
+                                <label for="reason_for_applying">Write an essay of 200-300 words on your purpose(s) in seeking admission to the graduate program and what the program can contribute to your current or preferred career:</label>
+                                <textarea name="reason_for_applying" id="reason_for_applying" rows="10" required></textarea>
+                            </div>
+
+                <!-- Applicant's Declaration Section -->
+                <div class="section">
+                    <h2>VII. Applicant's Declaration</h2>
+                    <p>This application is not valid unless signed by the applicant.</p>
+                    <ul>
+                        <li>I understand and will comply with the statutes, rules, and regulations of the University of the Philippines.</li>
+                        <li>I understand that the University of the Philippines or the Institute/Department/College I am intending to apply in may reverse any admission decision made based on incorrect or incomplete information at the time of lodging this application.</li>
+                        <li>I agree to notify the responsible office immediately if there is any change to the information I have given in this application.</li>
+                        <li>I acknowledge that the provision of incorrect information or documentary may result in the cancellation of my enrollment or in any sanctions therein.</li>
+                        <li>I declare that the information given on this form is true and correct.</li>
+                    </ul>
+                    <div class="form-group">
+                        <label for="signature1">Signature:</label>
+                        <canvas id="signature-pad1" class="signature-pad" width="1530" height="200"></canvas>
+                        <button type="button" id="clear1">Clear</button>
+                        <input type="hidden" name="signature1" id="signature1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="printed_name">Printed Name:</label>
+                        <input type="text" name="printed_name" id="printed_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_signed">Date:</label>
+                        <input type="date" name="date_signed" id="date_signed" required>
+                    </div>
+                </div>
+                        
+                        <!-- Decision Section for GPC Use Only -->
+                        <div class="section">
+                            <h2>For GPC Use Only</h2>
+                            <label for="gpc_decision">Tick Decision:</label>
+                            <select name="gpc_decision" id="gpc_decision">
+                                <option value="">Select Decision</option>
+                                <option value="accepted">Accepted</option>
+                                <option value="conditional_acceptance">Conditional Acceptance</option>
+                                <option value="not_accepted">Not Accepted</option>
+                            </select>
+                            <label for="decision_date">Date:</label>
+                            <input type="date" name="decision_date" id="decision_date">
+                            <div class="form-group">
+                                <label for="signature3">Signature:</label>
+                                <canvas id="signature-pad3" class="signature-pad" width="1530" height="200"></canvas>
+                                <button type="button" id="clear3">Clear</button>
+                                <input type="hidden" name="signature3" id="signature3">
+                            </div>
+                            <label for="remarks_conditions">Remarks/Conditions:</label>
+                            <textarea name="remarks_conditions" id="remarks_conditions" rows="3"></textarea>
+                        </div>
+                                                <!-- Submit Button -->
+                        <div class="section">
+                            <h2>University of the Philippines</h2>
+                            <p>REVISED CONSENT AND ASSENT FORM FOR NEW STUDENTS</p>
+                            <P>
+                                I have read the University of the Philippines' Privacy Notice for Student.
+                            </P>
+                              <p>I grant my consent to and recognize the authority of the University of the Philippines to process my
+                                personal and sensitive personal information, pursuant to the abovementioned Privacy Notice and
+                                applicable laws in connection with my application to shift/transfer/ be admitted as a student of University of the Philippines.</p>
+                              <p>I likewise consent to and recognize University of the Philippines's authority to post online and/or in University of the Philippines bulletin boards at its
+                                option my name and program in the event i qualify for admission in order for the University to comply
+                                with its Charter and uphold the principle of transparency in the admissions process.</p>
+                          
+                                <div class="form-group">
+                                    <label for="signature2">Signature:</label>
+                                    <canvas id="signature-pad2" class="signature-pad" width="1530" height="200"></canvas>
+                                    <button type="button" id="clear2">Clear</button>
+                                    <input type="hidden" name="signature2" id="signature2" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="printed_name1">Printed Name:</label>
+                                    <input type="text" name="printed_name1" id="printed_name1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_signed1">Date:</label>
+                                    <input type="date" name="date_signed1" id="date_signed1" required>
+                                </div>
+                        </div>
+                        <div class="section">
+                            <button type="submit">Submit Application</button>
+                        </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
