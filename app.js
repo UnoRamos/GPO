@@ -21,6 +21,7 @@ app.post('/generate-pdf', async (req, res) => {
     try {
         const html = await ejs.renderFile(path.join(__dirname, 'views', 'pdfTemplate.ejs'), data);
 
+        // Launch a new browser instance if not already running
         if (!browserInstance) {
             browserInstance = await puppeteer.launch({
                 headless: true,
@@ -28,27 +29,34 @@ app.post('/generate-pdf', async (req, res) => {
             });
         }
 
+        // Create a new page in the browser
         const page = await browserInstance.newPage();
+
+        // Set HTML content on the page
         await page.setContent(html);
 
-        // Set a longer timeout duration
-        const pdf = await page.pdf({ format: 'A4', timeout: 9000000 });
+        // Generate PDF from the page content
+        const pdf = await page.pdf({ format: 'A4' });
 
-        res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename=application.pdf`,
-        });
+        // Set response headers for PDF download
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename="application.pdf"');
+
+        // Send the PDF content as response
         res.send(pdf);
     } catch (error) {
-        console.error('PDF generation error:', error);
-        res.status(500).send('PDF generation error');
-    } finally {
-        // Close browser to release resources
-        if (browserInstance) {
-            await browserInstance.close();
-            browserInstance = null;
-        }
+        console.error('Error generating PDF:', error);
+        res.status(500).send('Error generating PDF');
     }
+});
+
+// Handle graceful shutdown
+process.on('SIGINT', async () => {
+    if (browserInstance) {
+        await browserInstance.close();
+        console.log('Browser instance closed gracefully.');
+    }
+    process.exit(0);
 });
 
 const PORT = process.env.PORT || 3000;
