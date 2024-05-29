@@ -3,14 +3,13 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const puppeteer = require('puppeteer');
 const path = require('path');
-const fs = require('fs');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let browserInstance; // Reuse browser instance
+let browserInstance = null;
 
 app.get('/', (req, res) => {
     res.render('form');
@@ -24,14 +23,14 @@ app.post('/generate-pdf', async (req, res) => {
 
         if (!browserInstance) {
             browserInstance = await puppeteer.launch({
-                headless: true, // Run in headless mode
-                args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required for Linux environments
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
         }
 
         const page = await browserInstance.newPage();
         await page.setContent(html);
-        
+
         // Set a longer timeout duration
         const pdf = await page.pdf({ format: 'A4', timeout: 9000000 });
 
@@ -43,6 +42,12 @@ app.post('/generate-pdf', async (req, res) => {
     } catch (error) {
         console.error('PDF generation error:', error);
         res.status(500).send('PDF generation error');
+    } finally {
+        // Close browser to release resources
+        if (browserInstance) {
+            await browserInstance.close();
+            browserInstance = null;
+        }
     }
 });
 
