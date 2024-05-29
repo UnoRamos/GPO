@@ -24,8 +24,9 @@ app.post('/generate-pdf', async (req, res) => {
 
         if (!browserInstance) {
             browserInstance = await puppeteer.launch({
-                headless: true, // Run in headless mode
-                args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required for Linux environments
+                executablePath: '/usr/bin/google-chrome', // Specify the correct path to Chrome executable
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
         }
 
