@@ -36,84 +36,10 @@
         th {
             background-color: #f2f2f2;
         }
-        .signature-pad {
-            border: 1px solid #ddd;
-            background-color: #fff;
-            height: 200px;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Signature Pad 1
-            const canvas1 = document.getElementById('signature-pad1');
-            const signaturePad1 = new SignaturePad(canvas1, {
-                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
-                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
-            });
 
-            const clearButton1 = document.getElementById('clear1');
-            const signatureInput1 = document.getElementById('signature1');
-
-            clearButton1.addEventListener('click', () => {
-                signaturePad1.clear();
-            });
-
-            // Signature Pad 2
-            const canvas2 = document.getElementById('signature-pad2');
-            const signaturePad2 = new SignaturePad(canvas2, {
-                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
-                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
-            });
-
-            const clearButton2 = document.getElementById('clear2');
-            const signatureInput2 = document.getElementById('signature2');
-
-            clearButton2.addEventListener('click', () => {
-                signaturePad2.clear();
-            });
-
-            // Signature Pad 3
-            const canvas3 = document.getElementById('signature-pad3');
-            const signaturePad3 = new SignaturePad(canvas3, {
-                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
-                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
-            });
-
-            const clearButton3 = document.getElementById('clear3');
-            const signatureInput3 = document.getElementById('signature3');
-
-            clearButton3.addEventListener('click', () => {
-                signaturePad3.clear();
-            });
-
-            document.getElementById('graduationForm').addEventListener('submit', (e) => {
-                if (signaturePad1.isEmpty() || signaturePad2.isEmpty() || signaturePad3.isEmpty()) {
-                    alert("Please provide both signatures first.");
-                    e.preventDefault();
-                } else {
-                    signatureInput1.value = signaturePad1.toDataURL();
-                    signatureInput2.value = signaturePad2.toDataURL();
-                    signatureInput3.value = signaturePad2.toDataURL();
-                }
-            });
-        });
-        window.onload = function() {
-        var financialSupport = '<%= financial_support %>';
-        if (financialSupport === 'parents') {
-            document.getElementById('financial_support_parents').checked = true;
-        } else if (financialSupport === 'self') {
-            document.getElementById('financial_support_self').checked = true;
-        } else if (financialSupport === 'loan') {
-            document.getElementById('financial_support_loan').checked = true;
-        } else if (financialSupport === 'scholarship') {
-            document.getElementById('financial_support_scholarship').checked = true;
-        }
-    };
-    </script>
     <div class="container">
         <h1>Graduation Program Application Form</h1>
         
@@ -344,33 +270,6 @@
                 </tr>
             </table>
         </div>
-        <div class="section">
-            <h2>Means of Financial Support</h2>
-            <label><input type="checkbox" name="financial_support" id="parents" <% if (financial_support === 'parents') { %> checked <% } %>> Parents</label>
-            <label><input type="checkbox" name="financial_support" id="self" <% if (financial_support === 'self') { %> checked <% } %>> Self</label>
-            <label><input type="checkbox" name="financial_support" id="loan" <% if (financial_support === 'loan') { %> checked <% } %>> Loan</label>
-            <label><input type="checkbox" name="financial_support" id="scholarship" <% if (financial_support === 'scholarship') { %> checked <% } %>> Scholarship</label>
-            <div class="form-group">
-                <label for="annual_income">If self-supporting, state annual gross income:</label>
-                <input type="text" name="annual_income" id="annual_income" value="<%= annual_income %>">
-            </div>
-        </div>
-
-        
-        <div class="section">
-            <h2>Questions</h2>
-            <label for="conviction">1. Have you ever been convicted for violating any law, decree, ordinance, or regulations by any court or tribunal?</label>
-            <label><input type="radio" name="conviction" value="yes" <%= conviction === 'yes' ? 'checked' : '' %>> Yes</label>
-            <label><input type="radio" name="conviction" value="no" <%= conviction === 'no' ? 'checked' : '' %>> No</label>
-
-            <label for="pending_case">2. Do you have any pending administrative/criminal case?</label>
-            <label><input type="radio" name="pending_case" value="yes" <%= pending_case === 'yes' ? 'checked' : '' %>> Yes</label>
-            <label><input type="radio" name="pending_case" value="no" <%= pending_case === 'no' ? 'checked' : '' %>> No</label>
-            
-            <label for="disciplinary_action">3. Have you ever been subject to any disciplinary action from any institution attended?</label>
-            <label><input type="radio" name="disciplinary_action" value="yes" <%= disciplinary_action === 'yes' ? 'checked' : '' %>> Yes</label>
-            <label><input type="radio" name="disciplinary_action" value="no" <%= disciplinary_action === 'no' ? 'checked' : '' %>> No</label>
-        </div>
 
         <h2>VI. References</h2>
         <p><%= reference_1 %></p>
@@ -380,7 +279,6 @@
         <div class="section">
             <h2>Reasons for Applying to the Program</h2>
             <label for="reason_for_applying">Write an essay of 200-300 words on your purpose(s) in seeking admission to the graduate program and what the program can contribute to your current or preferred career:</label>
-            <%- text.replace(/\n/g, '<br/>') %>
             <textarea name="reason_for_applying" id="reason_for_applying" rows="10" required><%= reason_for_applying %></textarea>
         </div>
     
