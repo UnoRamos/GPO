@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # exit on errorset -o errexit
 
-npm install puppeteer --save
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false npm install puppeteer --save
 # npm run build # uncomment if required
 
 # Store/pull Puppeteer cache with build cache
