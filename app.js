@@ -1,15 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
-const puppeteer = require('puppeteer'); // Use puppeteer here, as we are pointing to the local chromium
+const puppeteer = require('puppeteer');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let browserInstance = null;
+let browserInstance; // Reuse browser instance
 
 app.get('/', (req, res) => {
     res.render('form');
@@ -21,33 +22,27 @@ app.post('/generate-pdf', async (req, res) => {
     try {
         const html = await ejs.renderFile(path.join(__dirname, 'views', 'pdfTemplate.ejs'), data);
 
-        // Launch a new browser instance if not already running
         if (!browserInstance) {
             browserInstance = await puppeteer.launch({
-                executablePath: 'C:\\your_workspace\\node_modules\\puppeteer\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe', // Update to match the correct path and version
-                headless: true,
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
+                headless: true, // Run in headless mode
+                args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required for Linux environments
             });
         }
 
-        // Create a new page in the browser
         const page = await browserInstance.newPage();
-
-        // Set HTML content on the page
         await page.setContent(html);
+        
+        // Set a longer timeout duration
+        const pdf = await page.pdf({ format: 'A4', timeout: 9000000 });
 
-        // Generate PDF from the page content
-        const pdf = await page.pdf({ format: 'A4' });
-
-        // Set response headers for PDF download
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename="application.pdf"');
-
-        // Send the PDF content as response
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename=application.pdf`,
+        });
         res.send(pdf);
     } catch (error) {
-        console.error('Error generating PDF:', error);
-        res.status(500).send('Error generating PDF');
+        console.error('PDF generation error:', error);
+        res.status(500).send('PDF generation error');
     }
 });
 
