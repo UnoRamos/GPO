@@ -5,13 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graduation Program Application Form</title>
     <style>
-     body {
+     /* Global Styles */
+body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   box-sizing: border-box;
+  height: 100vh;
 }
 
+/* Navigation Bar (Optional) */
+.navigation {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.navigation a:hover {
+  background-color: #ddd;
+  color: #333;
+}
+
+/* Container */
 .container {
   width: 90%;
   margin: 20px auto;
@@ -20,15 +43,18 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Headings */
 h1, h2, h3 {
   color: #333;
 }
 
+/* Labels */
 label {
   display: block;
   margin: 10px 0 5px;
 }
 
+/* Form Elements */
 input, select, textarea {
   width: 100%;
   padding: 10px;
@@ -36,6 +62,7 @@ input, select, textarea {
   box-sizing: border-box;
 }
 
+/* Tables */
 table {
   width: 100%;
   margin-bottom: 20px;
@@ -48,6 +75,7 @@ th, td {
   text-align: left;
 }
 
+/* Buttons */
 button {
   padding: 10px 15px;
   background-color: #5cb85c;
@@ -60,6 +88,7 @@ button:hover {
   background-color: #4cae4c;
 }
 
+/* Signature Pad (Optional) */
 .signature-pad {
   border: 1px solid #ddd;
   background-color: #fff;
@@ -67,40 +96,40 @@ button:hover {
   width: 100%;
 }
 
-.form-group { /* Default form group styles */
-  margin-bottom: 10px; /* Adjust margin as needed */
+/* Form Groups (Optional) */
+.form-group {
+  margin-bottom: 10px;
 }
 
-.form-group.wide-label {  /* New class for wider labels */
-  display: flex; /* Make the group a flex container */
+.form-group.wide-label {
+  display: flex;
 }
 
 .form-group.wide-label label {
-  width: 120px; /* Set width for the label */
-  margin-right: 10px; /* Add margin between label and input */
+  width: 120px;
+  margin-right: 10px;
 }
 
 input[type="date"] {
-  width: calc(100% - 120px); /* Adjust the width as needed */
+  width: calc(100% - 120px);
 }
 
-/* Additional styles */
-
+/* Links */
 a {
   color: #333;
-  text-decoration: none; /* Removes underline from links */
+  text-decoration: none;
 }
 
 a:hover {
-  color: #5cb85c; /* Changes link color on hover */
+  color: #5cb85c;
 }
 
+/* Images */
 img {
-  max-width: 100%; /* Ensures images don't overflow container */
+  max-width: 100%;
 }
 
-/* Media Queries */
-
+/* Responsive Adjustments */
 @media (min-width: 768px) {
   .container {
     width: 80%;
@@ -109,13 +138,23 @@ img {
 
 @media (max-width: 767px) {
   body {
-    padding: 0; /* Removes padding for mobile devices */
+    padding: 0;
   }
   .container {
-    padding: 20px; /* Adjusts padding for mobile layout */
+    padding: 20px;
   }
 }
 
+/* Error States (Optional) */
+.form-group.error {
+  border: 1px solid red;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+  border: 1px solid red;
+}
     </style>
 </head>
 <body>
