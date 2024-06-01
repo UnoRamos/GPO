@@ -46,6 +46,39 @@ app.post('/generate-pdf', async (req, res) => {
     }
 });
 
+    // Load signature images
+    const signature1Bytes = await fs.promises.readFile('signature1.png');
+    const signature2Bytes = await fs.promises.readFile('signature2.png');
+    const signature3Bytes = await fs.promises.readFile('signature3.png');
+
+    // Embed signature images
+    const signature1Image = await pdfDoc.embedPng(signature1Bytes);
+    const signature2Image = await pdfDoc.embedPng(signature2Bytes);
+    const signature3Image = await pdfDoc.embedPng(signature3Bytes);
+
+    // Get the first page of the PDF document
+    const page = pdfDoc.getPages()[0];
+
+    // Draw signature 1
+    page.drawImage(signature1Image, {
+        x: 50,
+        y: 50,
+        width: 100, // Adjust width as needed
+    });
+
+    // Draw signature 2
+    page.drawImage(signature2Image, {
+        x: 50,
+        y: 150, // Adjust y position as needed
+        width: 100, // Adjust width as needed
+    });
+
+    // Draw signature 3
+    page.drawImage(signature3Image, {
+        x: 50,
+        y: 250, // Adjust y position as needed
+        width: 100, // Adjust width as needed
+    });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
