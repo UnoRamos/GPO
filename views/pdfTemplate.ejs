@@ -83,7 +83,40 @@
     </style>
 </head>
 <body>
+<script>
+// Sample JavaScript code for handling e-signature using a library like SignaturePad.js
+        var canvas1 = document.getElementById('signature-pad1');
+        var signaturePad1 = new SignaturePad(canvas1);
+        var hiddenInput1 = document.getElementById('signature1');
 
+        // Add event listener to capture e-signature
+        signaturePad1.onEnd = function () {
+            // Convert e-signature to data URL and assign it to the hidden input field
+            hiddenInput1.value = signaturePad1.toDataURL();
+        };
+
+        var canvas2 = document.getElementById('signature-pad2');
+        var signaturePad2 = new SignaturePad(canvas2);
+        var hiddenInput2 = document.getElementById('signature2');
+
+        // Add event listener to capture e-signature
+        signaturePad2.onEnd = function () {
+            // Convert e-signature to data URL and assign it to the hidden input field
+            hiddenInput2.value = signaturePad2.toDataURL();
+        };
+
+        var canvas3 = document.getElementById('signature-pad3');
+        var signaturePad3 = new SignaturePad(canvas3);
+        var hiddenInput3 = document.getElementById('signature3');
+
+        // Add event listener to capture e-signature
+        signaturePad3.onEnd = function () {
+            // Convert e-signature to data URL and assign it to the hidden input field
+            hiddenInput3.value = signaturePad3.toDataURL();
+        };
+
+        // Repeat the above process for signature-pad2 and signature-pad3 if needed
+</script>
     <div class="container">
         <h1>Graduation Program Application Form</h1>
         
