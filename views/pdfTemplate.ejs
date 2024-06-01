@@ -83,6 +83,7 @@
     </style>
 </head>
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
 <script>
 // Sample JavaScript code for handling e-signature using a library like SignaturePad.js
         var canvas1 = document.getElementById('signature-pad1');
@@ -371,7 +372,7 @@
             </ul>
             <div class="form-group">
                 <label for="signature1">Signature:</label>
-                <canvas id="signature-pad1" class="signature-pad" width="1530" height="200"></canvas>
+                <canvas id="signature-pad1" class="signature-pad" width="500" height="200"></canvas>
                 <input type="hidden" name="signature1" id="signature1" value="<%= signature1 %>" required>
             </div>
             <div class="form-group">
@@ -397,7 +398,7 @@
             <input type="date" name="decision_date" id="decision_date" value="<%= decision_date %>">
             <div class="form-group">
                 <label for="signature3">Signature:</label>
-                <canvas id="signature-pad3" class="signature-pad" width="1530" height="200"></canvas>
+                <canvas id="signature-pad3" class="signature-pad" width="500" height="200"></canvas>
                 <input type="hidden" name="signature3" id="signature3" value="<%= signature3 %>">
             </div>
             <label for="remarks_conditions">Remarks/Conditions:</label>
@@ -413,7 +414,7 @@
             <p>I likewise consent to and recognize University of the Philippines's authority to post online and/or in University of the Philippines bulletin boards at its option my name and program in the event i qualify for admission in order for the University to comply with its Charter and uphold the principle of transparency in the admissions process.</p>
             <div class="form-group">
                 <label for="signature2">Signature:</label>
-                <canvas id="signature-pad2" class="signature-pad" width="1530" height="200"></canvas>
+                <canvas id="signature-pad2" class="signature-pad" width="500" height="200"></canvas>
                 <input type="hidden" name="signature2" id="signature2" value="<%= signature2 %>" required>
             </div>
             <div class="form-group">
