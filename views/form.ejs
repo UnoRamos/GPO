@@ -6,19 +6,21 @@
     <title>Graduation Program Application Form</title>
     <style>
      body {
+ body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
         }
         .container {
-            width: 80%;
+            width: 90%;
             margin: 20px auto;
             background: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
         }
-        h1, h2 {
+        h1, h2, h3 {
             color: #333;
         }
         label {
@@ -29,6 +31,7 @@
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
+            box-sizing: border-box;
         }
         table {
             width: 100%;
@@ -55,6 +58,15 @@
             background-color: #fff;
             height: 200px;
             width: 100%;
+        }
+        @media (min-width: 768px) {
+            .form-group {
+                display: flex;
+                justify-content: space-between;
+            }
+            .form-group label, .form-group input, .form-group select, .form-group textarea {
+                width: 48%;
+            }
         }
     </style>
 </head>
