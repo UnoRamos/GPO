@@ -7,8 +7,6 @@ const fs = require('fs');
 
 const app = express();
 
-const projectRoot = path.dirname(__dirname); // Get the absolute project root path
-
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
