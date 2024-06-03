@@ -10,6 +10,9 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'assets')));
+
 let browserInstance; // Reuse browser instance
 
 app.get('/', (req, res) => {
