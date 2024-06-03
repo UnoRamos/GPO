@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files from the 'assets' directory
 app.use(express.static(path.join(__dirname, 'assets')));
-
+app.use(express.static(path.join(__dirname, 'views')));
 let browserInstance; // Reuse browser instance
 
 app.get('/', (req, res) => {
