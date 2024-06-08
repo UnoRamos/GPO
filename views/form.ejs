@@ -167,28 +167,14 @@ img {
                 signaturePad2.clear();
             });
 
-            // Signature Pad 3
-            const canvas3 = document.getElementById('signature-pad3');
-            const signaturePad3 = new SignaturePad(canvas3, {
-                backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
-                penColor: 'rgb(0, 0, 0)' // Sets the pen color to black
-            });
-
-            const clearButton3 = document.getElementById('clear3');
-            const signatureInput3 = document.getElementById('signature3');
-
-            clearButton3.addEventListener('click', () => {
-                signaturePad3.clear();
-            });
 
             document.getElementById('graduationForm').addEventListener('submit', (e) => {
-                if (signaturePad1.isEmpty() || signaturePad2.isEmpty() || signaturePad3.isEmpty()) {
+                if (signaturePad1.isEmpty() || signaturePad2.isEmpty()) {
                     alert("Please provide both signatures first.");
                     e.preventDefault();
                 } else {
                     signatureInput1.value = signaturePad1.toDataURL();
                     signatureInput2.value = signaturePad2.toDataURL();
-                    signatureInput3.value = signaturePad3.toDataURL();
                 }
             });
         });
@@ -577,12 +563,6 @@ img {
                             </select>
                             <label for="decision_date">Date:</label>
                             <input type="date" name="decision_date" id="decision_date">
-                            <div class="form-group">
-                                <label for="signature3">Signature:</label>
-                                <canvas id="signature-pad3" class="signature-pad" width="1530" height="200"></canvas>
-                                <button type="button" id="clear3">Clear</button>
-                                <input type="hidden" name="signature3" id="signature3">
-                            </div>
                             <label for="remarks_conditions">Remarks/Conditions:</label>
                             <textarea name="remarks_conditions" id="remarks_conditions" rows="3"></textarea>
                         </div>
