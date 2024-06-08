@@ -87,7 +87,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const signaturePads = [];
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 1; i <= 2; i++) {
                 const canvas = document.getElementById(`signature-pad${i}`);
                 const signaturePad = new SignaturePad(canvas, {
                     backgroundColor: 'rgb(255, 255, 255)', // Ensures a white background
@@ -104,15 +104,13 @@
             document.getElementById('graduationForm').addEventListener('submit', (e) => {
                 const signatureInput1 = document.getElementById('signature1');
                 const signatureInput2 = document.getElementById('signature2');
-                const signatureInput3 = document.getElementById('signature3');
 
-                if (signaturePads[0].isEmpty() || signaturePads[1].isEmpty() || signaturePads[2].isEmpty()) {
+                if (signaturePads[0].isEmpty() || signaturePads[1].isEmpty()) {
                     alert("Please provide all signatures first.");
                     e.preventDefault();
                 } else {
                     signatureInput1.value = signaturePads[0].toDataURL();
                     signatureInput2.value = signaturePads[1].toDataURL();
-                    signatureInput3.value = signaturePads[2].toDataURL();
                 }
             });
         });
@@ -395,11 +393,6 @@
             </select>
             <label for="decision_date">Date:</label>
             <input type="date" name="decision_date" id="decision_date" value="<%= decision_date %>">
-            <div class="form-group">
-                <label for="signature3">Signature:</label>
-                <canvas id="signature-pad3" class="signature-pad" width="1000" height="200"></canvas>
-                <input type="hidden" name="signature3" id="signature3" value="<%= signature3 %>">
-            </div>
             <label for="remarks_conditions">Remarks/Conditions:</label>
             <textarea name="remarks_conditions" id="remarks_conditions" rows="3"><%= remarks_conditions %></textarea>
         </div>
