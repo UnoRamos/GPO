@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Graduation Program Application Form</title>
     <style>
 .header {
@@ -31,7 +34,7 @@
     font-size: 14px;
 }
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #ffffff;
   margin: 0;
   box-sizing: border-box;
@@ -167,6 +170,201 @@ img {
                 signaturePad2.clear();
             });
 
+            // Add Row Function
+            function addChild() {
+                event.preventDefault();
+                var table = document.getElementById("childrenTable");
+                var row = table.insertRow(-1);
+                var nameCell = row.insertCell(0);
+                var dobCell = row.insertCell(1);
+                var sexCell = row.insertCell(2);
+
+                nameCell.innerHTML = '<input type="text" name="child_name[]" />';
+                dobCell.innerHTML = '<input type="date" name="child_dob[]" />';
+                sexCell.innerHTML = '<select name="child_sex[]"><option value="">Select Sex</option><option value="male">Male</option><option value="female">Female</option></select>';
+            }
+
+            document.getElementById('addChildButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addChild();
+            });
+
+            function addEducation() {
+                event.preventDefault();
+                var table = document.getElementById("educationTable");
+                var row = table.insertRow(-1);
+                var schoolCell = row.insertCell(0);
+                var degreeCell = row.insertCell(1);
+                var dateCell = row.insertCell(2);
+                var honorsCell = row.insertCell(3);
+                var averageCell = row.insertCell(4);
+
+                schoolCell.innerHTML = '<input type="text" name="school_name[]" />';
+                degreeCell.innerHTML = '<input type="text" name="degree[]" />';
+                dateCell.innerHTML = '<input type="text" name="date[]" />';
+                honorsCell.innerHTML = '<input type="text" name="honors[]" />';
+                averageCell.innerHTML = '<input type="text" name="average[]" />';
+            }
+
+            document.getElementById('addEducationButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addEducation();
+            });
+
+            function addExam() {
+                event.preventDefault();
+                var table = document.getElementById("examTable");
+                var row = table.insertRow(-1);
+                var examNatureCell = row.insertCell(0);
+                var examDateCell = row.insertCell(1);
+                var examRatingCell = row.insertCell(2);
+
+                examNatureCell.innerHTML = '<input type="text" name="exam_nature[]" />';
+                examDateCell.innerHTML = '<input type="date" name="exam_date[]" />';
+                examRatingCell.innerHTML = '<input type="text" name="exam_rating[]" />';
+            }
+
+            document.getElementById('addExamButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addExam();
+            });
+
+            function addEmployment() {
+                event.preventDefault();
+                var table = document.getElementById("employmentTable");
+                var row = table.insertRow(-1);
+                var companyCell = row.insertCell(0);
+                var addressCell = row.insertCell(1);
+                var positionCell = row.insertCell(2);
+                var datesCell = row.insertCell(3);
+                var workCell = row.insertCell(4);
+
+                companyCell.innerHTML = '<input type="text" name="employment_company[]" />';
+                addressCell.innerHTML = '<input type="text" name="employment_address[]" />';
+                positionCell.innerHTML = '<input type="text" name="employment_position[]" />';
+                datesCell.innerHTML = '<input type="text" name="employment_dates[]" />';
+                workCell.innerHTML = '<input type="text" name="employment_work[]" />';
+            }
+
+            document.getElementById('addEmploymentButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addEmployment();
+            });
+
+            function addPublication() {
+                event.preventDefault();
+                var table = document.getElementById("publicationTable");
+                var row = table.insertRow(-1);
+                var titleCell = row.insertCell(0);
+                var placeCell = row.insertCell(1);
+                var classificationCell = row.insertCell(2);
+
+                titleCell.innerHTML = '<input type="text" name="publication_title[]" />';
+                placeCell.innerHTML = '<input type="text" name="publication_place[]" />';
+                classificationCell.innerHTML = '<input type="text" name="publication_classification[]" />';
+            }
+
+            document.getElementById('addPublicationButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addPublication();
+            });
+
+            function addAward() {
+                event.preventDefault();
+                var table = document.getElementById("awardTable");
+                var row = table.insertRow(-1);
+                var titleCell = row.insertCell(0);
+                var sourceCell = row.insertCell(1);
+                var classificationCell = row.insertCell(2);
+
+                titleCell.innerHTML = '<input type="text" name="award_title[]" />';
+                sourceCell.innerHTML = '<input type="text" name="award_source[]" />';
+                classificationCell.innerHTML = '<input type="text" name="award_classification[]" />';
+            }
+
+            document.getElementById('addAwardButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addAward();
+            });
+
+            function addOrganization() {
+                event.preventDefault();
+                var table = document.getElementById("organizationTable");
+                var row = table.insertRow(-1);
+                var nameCell = row.insertCell(0);
+                var positionCell = row.insertCell(1);
+                var accomplishmentsCell = row.insertCell(2);
+
+    var classificationCell = row.insertCell(2);
+
+    titleCell.innerHTML = '<input type="text" name="publication_title[]" />';
+    placeCell.innerHTML = '<input type="text" name="publication_place[]" />';
+    classificationCell.innerHTML = '<input type="text" name="publication_classification[]" />';
+}
+
+document.getElementById('addPublicationButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    addPublication();
+});
+
+function addAward() {
+    event.preventDefault();
+    var table = document.getElementById("awardTable");
+    var row = table.insertRow(-1);
+    var titleCell = row.insertCell(0);
+    var sourceCell = row.insertCell(1);
+    var classificationCell = row.insertCell(2);
+
+    titleCell.innerHTML = '<input type="text" name="award_title[]" />';
+    sourceCell.innerHTML = '<input type="text" name="award_source[]" />';
+    classificationCell.innerHTML = '<input type="text" name="award_classification[]" />';
+}
+
+document.getElementById('addAwardButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    addAward();
+});
+
+function addOrganization() {
+    event.preventDefault();
+    var table = document.getElementById("organizationTable");
+    var row = table.insertRow(-1);
+    var nameCell = row.insertCell(0);
+    var positionCell = row.insertCell(1);
+    var accomplishmentsCell = row.insertCell(2);
+
+    nameCell.innerHTML = '<input type="text" name="organization_name[]" />';
+    positionCell.innerHTML = '<input type="text" name="organization_position[]" />';
+    accomplishmentsCell.innerHTML = '<input type="text" name="organization_accomplishments[]" />';
+}
+
+document.getElementById('addOrganizationButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    addOrganization();
+});
+
+function addSeminar() {
+    event.preventDefault();
+    var table = document.getElementById("seminarTable");
+    var row = table.insertRow(-1);
+    var nameCell = row.insertCell(0);
+    var levelCell = row.insertCell(1);
+    var participationCell = row.insertCell(2);
+    var dateCell = row.insertCell(3);
+
+    nameCell.innerHTML = '<input type="text" name="seminar_name[]" />';
+    levelCell.innerHTML = '<input type="text" name="seminar_level[]" />';
+    participationCell.innerHTML = '<input type="text" name="seminar_participation[]" />';
+    dateCell.innerHTML = '<input type="date" name="seminar_date[]" />';
+}
+
+document.getElementById('addSeminarButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    addSeminar();
+});
+
+
+
 
             document.getElementById('graduationForm').addEventListener('submit', (e) => {
                 if (signaturePad1.isEmpty() || signaturePad2.isEmpty()) {
@@ -267,243 +465,186 @@ img {
                         <input type="text" name="spouse_name" id="spouse_name">
                     </div>
                 </div>
+
+            <!-- Children Information Section -->
+            <div class="section">
+                <h2>Children Information (if applicable)</h2>
+                <table id="childrenTable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Date of Birth</th>
+                        <th>Sex</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="child_name_1" id="child_name_1"></td>
+                        <td><input type="date" name="child_dob_1" id="child_dob_1"></td>
+                        <td>
+                            <select name="child_sex_1" id="child_sex_1">
+                                <option value="">Select Sex</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button id="addChildButton">Add Row</button>
+            </div>
+            
                 
-                <!-- Children Information Section -->
-                <div class="section">
-                    <h2>Children Information (if applicable)</h2>
-                    <div class="form-group">
-                        <label for="child_name_1">Child 1 Name:</label>
-                        <input type="text" name="child_name_1" id="child_name_1">
-                    </div>
-                    <div class="form-group">
-                        <label for="child_dob_1">Date of Birth:</label>
-                        <input type="date" name="child_dob_1" id="child_dob_1">
-                    </div>
-                    <div class="form-group">
-                        <label for="child_sex_1">Sex:</label>
-                        <select name="child_sex_1" id="child_sex_1">
-                            <option value="">Select Sex</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                </div>
+               <!-- Educational Background Section -->
+               <div class="section">
+                <h2>II. Educational Background</h2>
+                <table id="educationTable">
+                    <tr>
+                        <th>School/College/University Attended</th>
+                        <th>Educational Attainment</th>
+                        <th>Inclusive Dates</th>
+                        <th>Honors Received</th>
+                        <th>Weighted Average</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="school_name_1"></td>
+                        <td><input type="text" name="degree_1"></td>
+                        <td><input type="text" name="date_1"></td>
+                        <td><input type="text" name="honors_1"></td>
+                        <td><input type="text" name="average_1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="school_name_2"></td>
+                        <td><input type="text" name="degree_2"></td>
+                        <td><input type="text" name="date_2"></td>
+                        <td><input type="text" name="honors_2"></td>
+                        <td><input type="text" name="average_2"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="school_name_3"></td>
+                        <td><input type="text" name="degree_3"></td>
+                        <td><input type="text" name="date_3"></td>
+                        <td><input type="text" name="honors_3"></td>
+                        <td><input type="text" name="average_3"></td>
+                    </tr>
+                </table>
+                <button id="addEducationButton">Add Row</button>
+            </div>
+            
+            <!-- Examinations Passed Section -->
+            <div class="section">
+                <h2>III. Examinations Passed</h2>
+                <table id="examTable">
+                    <tr>
+                        <th>Nature of Examination</th>
+                        <th>Date Taken</th>
+                        <th>Rating</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="exam_nature_1"></td>
+                        <td><input type="date" name="exam_date_1"></td>
+                        <td><input type="text" name="exam_rating_1"></td>
+                    </tr>
+                </table>
+                <button id="addExamButton">Add Row</button>
+            </div>
+            
+            <!-- Employment History Section -->
+            <div class="section">
+                <h2>IV. Employment History</h2>
+                <table id="employmentTable">
+                    <tr>
+                        <th>Agency/Company Name</th>
+                        <th>Address</th>
+                        <th>Position</th>
+                        <th>Inclusive Dates of Employment</th>
+                        <th>Nature of Work</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="employment_company_1"></td>
+                        <td><input type="text" name="employment_address_1"></td>
+                        <td><input type="text" name="employment_position_1"></td>
+                        <td><input type="text" name="employment_dates_1"></td>
+                        <td><input type="text" name="employment_work_1"></td>
+                    </tr>
+                </table>
+                <button id="addEmploymentButton">Add Row</button>
+            </div>
+            
+            <!-- Other Information Section -->
+            <div class="section">
+                <h2>V. Other Information</h2>
                 
-                <!-- Educational Background Section -->
-                <div class="section">
-                    <h2>II. Educational Background</h2>
-                    <table>
+                <!-- Publications Section -->
+                <div class="subsection">
+                    <h3>Publications</h3>
+                    <table id="publicationTable">
                         <tr>
-                            <th>School/College/University Attended</th>
-                            <th>Educational Attainment</th>
-                            <th>Inclusive Dates</th>
-                            <th>Honors Received</th>
-                            <th>Weighted Average</th>
+                            <th>Title of Publication</th>
+                            <th>Place of Publication</th>
+                            <th>Classification</th>
                         </tr>
                         <tr>
-                            <td><input type="text" name="school_name_1"></td>
-                            <td><input type="text" name="degree_1"></td>
-                            <td><input type="text" name="date_1"></td>
-                            <td><input type="text" name="honors_1"></td>
-                            <td><input type="text" name="average_1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="school_name_2"></td>
-                            <td><input type="text" name="degree_2"></td>
-                            <td><input type="text" name="date_2"></td>
-                            <td><input type="text" name="honors_2"></td>
-                            <td><input type="text" name="average_2"></td>
+                            <td><input type="text" name="publication_title_1"></td>
+                            <td><input type="text" name="publication_place_1"></td>
+                            <td><input type="text" name="publication_classification_1"></td>
                         </tr>
                     </table>
+                    <button id="addPublicationButton">Add Row</button>
                 </div>
                 
-                <!-- Examinations Passed Section -->
-                <div class="section">
-                    <h2>III. Examinations Passed</h2>
-                    <table>
+                <!-- Awards Section -->
+                <div class="subsection">
+                    <h3>Awards Received</h3>
+                    <table id="awardTable">
                         <tr>
-                            <th>Nature of Examination</th>
-                            <th>Date Taken</th>
-                            <th>Rating</th>
+                            <th>Nature of Award</th>
+                            <th>Awarded By</th>
+                            <th>Classification</th>
                         </tr>
                         <tr>
-                            <td><input type="text" name="exam_nature_1"></td>
-                            <td><input type="date" name="exam_date_1"></td>
-                            <td><input type="text" name="exam_rating_1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="exam_nature_2"></td>
-                            <td><input type="date" name="exam_date_2"></td>
-                            <td><input type="text" name="exam_rating_2"></td>
+                            <td><input type="text" name="award_title_1"></td>
+                            <td><input type="text" name="award_source_1"></td>
+                            <td><input type="text" name="award_classification_1"></td>
                         </tr>
                     </table>
+                    <button id="addAwardButton">Add Row</button>
                 </div>
                 
-                <!-- Employment History Section -->
-                <div class="section">
-                    <h2>IV. Employment History</h2>
-                    <table>
+                <!-- Involvement/Membership Section -->
+                <div class="subsection">
+                    <h3>Involvement/Membership</h3>
+                    <table id="organizationTable">
                         <tr>
-                            <th>Agency/Company Name</th>
-                            <th>Address</th>
+                            <th>Name of Organization</th>
                             <th>Position</th>
-                            <th>Inclusive Dates of Employment</th>
-                            <th>Nature of Work</th>
+                            <th>Accomplishments</th>
                         </tr>
                         <tr>
-                            <td><input type="text" name="employment_company_1"></td>
-                            <td><input type="text" name="employment_address_1"></td>
-                            <td><input type="text" name="employment_position_1"></td>
-                            <td><input type="text" name="employment_dates_1"></td>
-                            <td><input type="text" name="employment_work_1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="employment_company_2"></td>
-                            <td><input type="text" name="employment_address_2"></td>
-                            <td><input type="text" name="employment_position_2"></td>
-                            <td><input type="text" name="employment_dates_2"></td>
-                            <td><input type="text" name="employment_work_2"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="employment_company_3"></td>
-                            <td><input type="text" name="employment_address_3"></td>
-                            <td><input type="text" name="employment_position_3"></td>
-                            <td><input type="text" name="employment_dates_3"></td>
-                            <td><input type="text" name="employment_work_3"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="employment_company_4"></td>
-                            <td><input type="text" name="employment_address_4"></td>
-                            <td><input type="text" name="employment_position_4"></td>
-                            <td><input type="text" name="employment_dates_4"></td>
-                            <td><input type="text" name="employment_work_4"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="employment_company_5"></td>
-                            <td><input type="text" name="employment_address_5"></td>
-                            <td><input type="text" name="employment_position_5"></td>
-                            <td><input type="text" name="employment_dates_5"></td>
-                            <td><input type="text" name="employment_work_5"></td>
+                            <td><input type="text" name="organization_name_1"></td>
+                            <td><input type="text" name="organization_position_1"></td>
+                            <td><input type="text" name="organization_accomplishments_1"></td>
                         </tr>
                     </table>
+                    <button id="addOrganizationButton">Add Row</button>
                 </div>
                 
-                <!-- Other Information Section -->
-                <div class="section">
-                    <h2>V. Other Information</h2>
-                    
-                    <!-- Publications Section -->
-                    <div class="subsection">
-                        <h3>Publications</h3>
-                        <table>
-                            <tr>
-                                <th>Title of Publication</th>
-                                <th>Place of Publication</th>
-                                <th>Classification</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="publication_title_1"></td>
-                                <td><input type="text" name="publication_place_1"></td>
-                                <td><input type="text" name="publication_classification_1"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="publication_title_2"></td>
-                                <td><input type="text" name="publication_place_2"></td>
-                                <td><input type="text" name="publication_classification_2"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="publication_title_3"></td>
-                                <td><input type="text" name="publication_place_3"></td>
-                                <td><input type="text" name="publication_classification_3"></td>
-                            </tr>
-                        </table>
+                <!-- Seminars/Trainings Section -->
+                <div class="subsection">
+                    <h3>Seminars/Trainings Attended</h3>
+                    <table id="seminarTable">
+                        <tr>
+                            <th>Seminars Attended</th>
+                            <th>Level</th>
+                            <th>Nature of Participation</th>
+                            <th>Date Attended</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="seminar_name_1"></td>
+                            <td><input type="text" name="seminar_level_1"></td>
+                            <td><input type="text" name="seminar_participation_1"></td>
+                            <td><input type="date" name="seminar_date_1"></td>
+                        </tr>
+                    </table>
+                    <button id="addSeminarButton">Add Row</button>
                     </div>
-                    
-                    <!-- Awards Section -->
-                    <div class="subsection">
-                        <h3>Awards Received</h3>
-                        <table>
-                            <tr>
-                                <th>Nature of Award</th>
-                                <th>Awarded By</th>
-                                <th>Classification</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="award_title_1"></td>
-                                <td><input type="text" name="award_source_1"></td>
-                                <td><input type="text" name="award_classification_1"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="award_title_2"></td>
-                                <td><input type="text" name="award_source_2"></td>
-                                <td><input type="text" name="award_classification_2"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="award_title_3"></td>
-                                <td><input type="text" name="award_source_3"></td>
-                                <td><input type="text" name="award_classification_3"></td>
-                            </tr>
-                        </table>
                     </div>
-                    
-                    <!-- Involvement/Membership Section -->
-                    <div class="subsection">
-                        <h3>Involvement/Membership</h3>
-                        <table>
-                            <tr>
-                                <th>Name of Organization</th>
-                                <th>Position</th>
-                                <th>Accomplishments</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="organization_name_1"></td>
-                                <td><input type="text" name="organization_position_1"></td>
-                                <td><input type="text" name="organization_accomplishments_1"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="organization_name_2"></td>
-                                <td><input type="text" name="organization_position_2"></td>
-                                <td><input type="text" name="organization_accomplishments_2"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="organization_name_3"></td>
-                                <td><input type="text" name="organization_position_3"></td>
-                                <td><input type="text" name="organization_accomplishments_3"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <!-- Seminars/Trainings Section -->
-                    <div class="subsection">
-                        <h3>Seminars/Trainings Attended</h3>
-                        <table>
-                            <tr>
-                                <th>Seminars Attended</th>
-                                <th>Level</th>
-                                <th>Nature of Participation</th>
-                                <th>Date Attended</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="seminar_name_1"></td>
-                                <td><input type="text" name="seminar_level_1"></td>
-                                <td><input type="text" name="seminar_participation_1"></td>
-                                <td><input type="date" name="seminar_date_1"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="seminar_name_2"></td>
-                                <td><input type="text" name="seminar_level_2"></td>
-                                <td><input type="text" name="seminar_participation_2"></td>
-                                <td><input type="date" name="seminar_date_2"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="seminar_name_3"></td>
-                                <td><input type="text" name="seminar_level_3"></td>
-                                <td><input type="text" name="seminar_participation_3"></td>
-                                <td><input type="date" name="seminar_date_3"></td>
-                            </tr>
-                        </table>
-                        </div>
-                        </div>
 
   
                         <!-- References Section -->
