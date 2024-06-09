@@ -294,74 +294,73 @@ img {
                 var nameCell = row.insertCell(0);
                 var positionCell = row.insertCell(1);
                 var accomplishmentsCell = row.insertCell(2);
+                var classificationCell = row.insertCell(2);
 
-    var classificationCell = row.insertCell(2);
+            titleCell.innerHTML = '<input type="text" name="publication_title[]" />';
+            placeCell.innerHTML = '<input type="text" name="publication_place[]" />';
+            classificationCell.innerHTML = '<input type="text" name="publication_classification[]" />';
+            }
 
-    titleCell.innerHTML = '<input type="text" name="publication_title[]" />';
-    placeCell.innerHTML = '<input type="text" name="publication_place[]" />';
-    classificationCell.innerHTML = '<input type="text" name="publication_classification[]" />';
-}
+            document.getElementById('addPublicationButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addPublication();
+            });
 
-document.getElementById('addPublicationButton').addEventListener('click', function(event) {
-    event.preventDefault();
-    addPublication();
-});
+            function addAward() {
+                event.preventDefault();
+                var table = document.getElementById("awardTable");
+                var row = table.insertRow(-1);
+                var titleCell = row.insertCell(0);
+                var sourceCell = row.insertCell(1);
+                var classificationCell = row.insertCell(2);
 
-function addAward() {
-    event.preventDefault();
-    var table = document.getElementById("awardTable");
-    var row = table.insertRow(-1);
-    var titleCell = row.insertCell(0);
-    var sourceCell = row.insertCell(1);
-    var classificationCell = row.insertCell(2);
+                titleCell.innerHTML = '<input type="text" name="award_title[]" />';
+                sourceCell.innerHTML = '<input type="text" name="award_source[]" />';
+                classificationCell.innerHTML = '<input type="text" name="award_classification[]" />';
+            }
 
-    titleCell.innerHTML = '<input type="text" name="award_title[]" />';
-    sourceCell.innerHTML = '<input type="text" name="award_source[]" />';
-    classificationCell.innerHTML = '<input type="text" name="award_classification[]" />';
-}
+            document.getElementById('addAwardButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addAward();
+            });
 
-document.getElementById('addAwardButton').addEventListener('click', function(event) {
-    event.preventDefault();
-    addAward();
-});
+            function addOrganization() {
+                event.preventDefault();
+                var table = document.getElementById("organizationTable");
+                var row = table.insertRow(-1);
+                var nameCell = row.insertCell(0);
+                var positionCell = row.insertCell(1);
+                var accomplishmentsCell = row.insertCell(2);
 
-function addOrganization() {
-    event.preventDefault();
-    var table = document.getElementById("organizationTable");
-    var row = table.insertRow(-1);
-    var nameCell = row.insertCell(0);
-    var positionCell = row.insertCell(1);
-    var accomplishmentsCell = row.insertCell(2);
+                nameCell.innerHTML = '<input type="text" name="organization_name[]" />';
+                positionCell.innerHTML = '<input type="text" name="organization_position[]" />';
+                accomplishmentsCell.innerHTML = '<input type="text" name="organization_accomplishments[]" />';
+            }
 
-    nameCell.innerHTML = '<input type="text" name="organization_name[]" />';
-    positionCell.innerHTML = '<input type="text" name="organization_position[]" />';
-    accomplishmentsCell.innerHTML = '<input type="text" name="organization_accomplishments[]" />';
-}
+            document.getElementById('addOrganizationButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addOrganization();
+            });
 
-document.getElementById('addOrganizationButton').addEventListener('click', function(event) {
-    event.preventDefault();
-    addOrganization();
-});
+            function addSeminar() {
+                event.preventDefault();
+                var table = document.getElementById("seminarTable");
+                var row = table.insertRow(-1);
+                var nameCell = row.insertCell(0);
+                var levelCell = row.insertCell(1);
+                var participationCell = row.insertCell(2);
+                var dateCell = row.insertCell(3);
 
-function addSeminar() {
-    event.preventDefault();
-    var table = document.getElementById("seminarTable");
-    var row = table.insertRow(-1);
-    var nameCell = row.insertCell(0);
-    var levelCell = row.insertCell(1);
-    var participationCell = row.insertCell(2);
-    var dateCell = row.insertCell(3);
+                nameCell.innerHTML = '<input type="text" name="seminar_name[]" />';
+                levelCell.innerHTML = '<input type="text" name="seminar_level[]" />';
+                participationCell.innerHTML = '<input type="text" name="seminar_participation[]" />';
+                dateCell.innerHTML = '<input type="date" name="seminar_date[]" />';
+            }
 
-    nameCell.innerHTML = '<input type="text" name="seminar_name[]" />';
-    levelCell.innerHTML = '<input type="text" name="seminar_level[]" />';
-    participationCell.innerHTML = '<input type="text" name="seminar_participation[]" />';
-    dateCell.innerHTML = '<input type="date" name="seminar_date[]" />';
-}
-
-document.getElementById('addSeminarButton').addEventListener('click', function(event) {
-    event.preventDefault();
-    addSeminar();
-});
+            document.getElementById('addSeminarButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addSeminar();
+            });
 
 
 
@@ -662,7 +661,16 @@ document.getElementById('addSeminarButton').addEventListener('click', function(e
                             <div class="section">
                                 <h2>Reasons for Applying to the Program</h2>
                                 <label for="reason_for_applying">Write an essay of 200-300 words on your purpose(s) in seeking admission to the graduate program and what the program can contribute to your current or preferred career:</label>
-                                <textarea name="reason_for_applying" id="reason_for_applying" rows="10" required></textarea>
+                                <p id="wordCount">0 words</p>
+                                <textarea name="reason_for_applying" id="reason_for_applying" rows="10" maxlength="300" oninput="countWords(this)" required></textarea>
+
+                                <script>
+                                    function countWords(textarea) {
+                                        var words = textarea.value.trim().split(/\s+/);
+                                        var wordCount = words.length;
+                                        document.getElementById("wordCount").textContent = wordCount + " words";
+                                    }
+                                </script>
                             </div>
 
                 <!-- Applicant's Declaration Section -->
