@@ -654,12 +654,17 @@ img {
                                 <h2>Reasons for Applying to the Program</h2>
                                 <label for="reason_for_applying">Write an essay of 200-300 words on your purpose(s) in seeking admission to the graduate program and what the program can contribute to your current or preferred career:</label>
                                 <p id="wordCount">0 / 300 words</p>
-                                <textarea name="reason_for_applying" id="reason_for_applying" rows="10" maxlength="300" oninput="countWords(this)" required></textarea>
+                                <textarea name="reason_for_applying" id="reason_for_applying" rows="10" oninput="countWords(this)" required></textarea>
 
                                 <script>
                                     function countWords(textarea) {
                                         var words = textarea.value.trim().split(/\s+/);
                                         var wordCount = words.length;
+                                        if (wordCount > 300) {
+                                            // If the word count exceeds 300, revert the textarea value to the first 300 words
+                                            textarea.value = words.slice(0, 300).join(' ');
+                                            wordCount = 300; // Set the word count to 300
+                                        }
                                         document.getElementById("wordCount").textContent = wordCount + " / 300 words";
                                     }
                                 </script>
