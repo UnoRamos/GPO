@@ -119,6 +119,10 @@ img {
   max-width: 100%; /* Ensures images don't overflow container */
 }
 
+.additional-requirements {
+            display: none;
+        }
+
 /* Media Queries */
 
 @media (min-width: 768px) {
@@ -135,6 +139,19 @@ img {
     padding: 20px; /* Adjusts padding for mobile layout */
   }
 }
+
+
+
+
+.container1 {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column1 {
+            flex: 1;
+            margin: 10px;
+        }
+
 
     </style>
 </head>
@@ -354,6 +371,22 @@ img {
             });
         });
     </script>
+    <script>
+        function showRequirements() {
+            const selectedProgram = document.querySelector('select[name="program"]').value;
+            const requirementsSections = document.querySelectorAll('.additional-requirements');
+
+            requirementsSections.forEach(section => {
+                if (section.id === selectedProgram) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+
     <header>
         <div class="header">
              <img src="/univ.png" alt="University Logo">
@@ -367,7 +400,130 @@ img {
         <div class="container">
             <form id="graduationForm" method="POST" action="/generate-pdf">
                 <!-- Personal Information Section -->
+                
                 <div class="section">
+                    <h1><span style="font-weight: bold; color: #004d14;">UPB-GP Form No.1:</span> </h1>
+                    <h2 style="font-style: italic; margin-top: -20px; color: #004d14;">Application for Admission to Graduate Programs</h2>
+                    <hr>
+                    <!-- two box inside a container for instructions -->
+                    <div class="column">
+                        <div class="form-group">
+                            <label for="Additional_req">Select the program you are applying for:</label>
+                            <div class="form-group">
+                                <select name="program" onchange="showRequirements()">
+                                    <option value="">Select a program</option>
+                                    <option value="MA_Language_Literature">Master of Arts in Language and Literature</option>
+                                    <option value="MA_History">Master of Arts in History</option>
+                                    <option value="MA_History">Master of Arts in Social and Development Studies</option>
+                                    <option value="Master_Management">Master of Management</option>
+                                    <option value="MS_Conservation_Restoration_Ecology">Master of Science in Conservation and Restoration Ecology</option>
+                                    <option value="MS_Mathematics">Master of Science in Mathematics</option>
+                                    <option value="PhD_Indigenous_Studies">Doctor of Philosophy in Indigenous Studies</option>
+                                    <option value="PhD_Mathematics">Doctor of Philosophy in Mathematics</option>
+                                </select>
+                            </div>
+                        </div>
+            
+                    </div>
+                    <div class="container1">
+                        <div class="column1">
+                            <div class="form-group">
+                                <label for="requirements">List of Requirements:</label>
+                                <div class="form-group">
+                                    <div class="row">
+                                        Complete this form and submit to the UP Baguio GPO with the following attachments:
+                                        <ul>
+                                            <li>Original Official Transcript of Records, updated with records of most recent enrollment.</li>
+                                            <li>Three (3) Reference Report Forms- 2 from former professors and 1 from the applicant's immediate supervisor</li>
+                                            <li>Recent 2” x 2” Photo (1 copy to be pasted on application form)</li>
+                                            <li><span style="font-weight: bold;">For working applicants:</span> an official permit from his/her employer/supervisor indicating the maximum number of units the student is allowed to enroll</li>
+                                            <li><span style="font-weight: bold;">For married women:</span> PSA Marriage Certificate</li>
+                                            <li><span style="font-weight: bold;">For foreign applicants:</span> A Test of English as a Foreign Language Certificate (PPT) with a score equivalent to 500 or a Certificate of English as Medium of Instruction from his/her university.</li>
+                                            <li>Original PSA Birth Certificate or Equivalent (for foreign applicants)</li>
+                                            <li>Application and Testing fee (250.00 PHP)</li>
+                                            <li>Receipt Number: <input type="text" name="receipt_number" style="width: 200px;" /></li>
+                                            <li>Note: Foreign applicants are required to pay an additional 20.00 USD on top of the application fee</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <div id="MA_History" class="additional-requirements">
+                                        <label for="requirements">Additional Requirements for MA History/ MASDS Program:</label>
+                                        <ol>
+                                            <li>A 1 to 3-page concept paper explaining a thesis topic that you would want to work on in the
+                                                future if you are accepted into the program (Arial, 12 pt, 1.5 spacing).
+                                                </li>
+                                            <li>A motivation letter addressed to the following:
+                                                <address>
+                                                    MA History or MASDS Graduate Program Committee<br>
+                                                    College of Social Sciences<br>
+                                                    UP Baguio, Governor Pack Road, Baguio City 2600
+                                                </address>
+                                            </li>
+                                
+                                        </ol>
+                                    </div>
+                                    <div id="PhD_Indigenous_Studies" class="additional-requirements">
+                                        <div id="PhD_Indigenous_Studies" class="additional-requirements">
+                                            <label for="requirements">Additional Requirements for PhD Indigenous Studies:</label>
+                                            <ul>
+                                                <li>Copy of Diploma from your master’s degree</li>
+                                                <li>Resume/Curriculum Vitae</li>
+                                                <li>
+                                                  A 3–4-page research proposal about a topic that you would want to work on if you are accepted into the program (Arial, 12 pt, 1.5 spacing)
+                                                </li>
+                                                <li>
+                                                  A letter expressing your intent for applying into the program and elaborating your experience or expectations in working with indigenous communities addressed to the following:
+                                                  <address>
+                                                    Prof. Leah E. Abayao, Ph.D.<br>
+                                                    Dean, College of Social Sciences<br>
+                                                    University of the Philippines Baguio<br>
+                                                    Gov. Pack Road, Baguio City 2600
+                                                  </address>
+                                                </li>
+                                              </ul>
+                                              
+                                        </div>
+                                    </div>
+                                    <div id="MA_Language_Literature" class="additional-requirements"></div>
+                                        <div id="MA_Language_Literature" class="additional-requirements">
+                                            <label for="requirements">Additional Requirements for MA Language and Literature:</label>
+                                            <ol>
+                                                <li>
+                                                    A Motivation letter which must:
+                                                    <ul>
+                                                        <li>be a minimum of 500 words;</li>
+                                                        <li>include an outline of research interest and possible research topic for thesis;</li>
+                                                        <li>include an outline of possible research methodology; and</li>
+                                                        <li>explain reason for the interest in research topic and how the MALL program will contribute to its development.</li>
+                                                    </ul>
+                                                    Addressed to:
+                                                    <address>
+                                                        MALL Graduate Program Admissions Committee<br>
+                                                        College of Arts and Communication<br>
+                                                        University of the Philippines Baguio<br>
+                                                        Gov. Pack Road, Baguio City 2600
+                                                    </address>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    
+
+                            </div>
+                        </div>
+
+    
+                    
+                    
+                    <hr>
+
+
+                    <br>
                     <h2>I. Personal Information</h2>
                     <div class="form-group">
                         <label for="last_name">Last Name, First, Suffix (if applicable), Middle:</label>
@@ -681,13 +837,14 @@ img {
                         <li>I acknowledge that the provision of incorrect information or documentary may result in the cancellation of my enrollment or in any sanctions therein.</li>
                         <li>I declare that the information given on this form is true and correct.</li>
                     </ul>
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="signature1">Signature:</label>
                         <canvas id="signature-pad1" class="signature-pad" width="1530" height="200"></canvas>
                         <button type="button" id="clear1">Clear</button>
                         <input type="hidden" name="signature1" id="signature1" required>
                     </div>
                     <div class="form-group">
+                        <p>Type your fulln ame, this will act as your signature.</p>
                         <label for="printed_name">Printed Name:</label>
                         <input type="text" name="printed_name" id="printed_name" required>
                     </div>
@@ -726,13 +883,16 @@ img {
                                 option my name and program in the event i qualify for admission in order for the University to comply
                                 with its Charter and uphold the principle of transparency in the admissions process.</p>
                           
-                                <div class="form-group">
-                                    <label for="signature2">Signature:</label>
-                                    <canvas id="signature-pad2" class="signature-pad" width="1530" height="200"></canvas>
-                                    <button type="button" id="clear2">Clear</button>
-                                    <input type="hidden" name="signature2" id="signature2" required>
+                                <div type="hidden" class="form-group">
+                                    <div type="hidden" class="form-group" style="display: none;">
+                                        <label for="signature2">Signature:</label>
+                                        <canvas type="hidden" id="signature-pad2" class="signature-pad" width="1530" height="200"></canvas>
+                                        <button type="hidden" type="button" id="clear2">Clear</button>
+                                        <input type="hidden" name="signature2" id="signature2" required>
+                                    </div>
                                 </div>
                                 <div class="form-group">
+                                    <p>Type your fulln ame, this will act as your signature.</p>
                                     <label for="printed_name1">Printed Name:</label>
                                     <input type="text" name="printed_name1" id="printed_name1" required>
                                 </div>
