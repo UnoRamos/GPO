@@ -369,25 +369,7 @@ img {
                 <!-- Personal Information Section -->
                 <div class="section">
                     <h2>I. Personal Information</h2>
-
                     <div class="form-group">
-                        <label for="profile_image">2x2 Image:</label>
-                        <small>Maximum file size: 5MB</small>
-                        <input type="file" name="profile_image" id="profile_image" accept="image/*" required>
-                        <img id="preview" src="" alt="Profile Image" style="max-width: 100px; margin-top: 10px;">
-                        <script>
-                            document.getElementById('profile_image').addEventListener('change', function(event) {
-                                var file = event.target.files[0];
-                                var reader = new FileReader();
-                                reader.onload = function(e) {
-                                    document.getElementById('preview').src = e.target.result;
-                                };
-                                reader.readAsDataURL(file);
-                            });
-                        </script>
-                    </div>
-
-                    <div class="form-group">    
                         <label for="last_name">Last Name, First, Suffix (if applicable), Middle:</label>
                         <input type="text" name="last_name" id="last_name" required>
                     </div>
@@ -694,10 +676,14 @@ img {
                         <li>I acknowledge that the provision of incorrect information or documentary may result in the cancellation of my enrollment or in any sanctions therein.</li>
                         <li>I declare that the information given on this form is true and correct.</li>
                     </ul>
-
+                    <div class="form-group">
+                        <label for="signature1">Signature:</label>
+                        <canvas id="signature-pad1" class="signature-pad" width="1530" height="200"></canvas>
+                        <button type="button" id="clear1">Clear</button>
+                        <input type="hidden" name="signature1" id="signature1" required>
+                    </div>
                     <div class="form-group">
                         <label for="printed_name">Printed Name:</label>
-                        <p>Type your printed name to serve as your signature</p>
                         <input type="text" name="printed_name" id="printed_name" required>
                     </div>
                     <div class="form-group">
@@ -736,8 +722,13 @@ img {
                                 with its Charter and uphold the principle of transparency in the admissions process.</p>
                           
                                 <div class="form-group">
+                                    <label for="signature2">Signature:</label>
+                                    <canvas id="signature-pad2" class="signature-pad" width="1530" height="200"></canvas>
+                                    <button type="button" id="clear2">Clear</button>
+                                    <input type="hidden" name="signature2" id="signature2" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="printed_name1">Printed Name:</label>
-                                    <p>Type your printed name to serve as your signature</p>
                                     <input type="text" name="printed_name1" id="printed_name1" required>
                                 </div>
                                 <div class="form-group">
