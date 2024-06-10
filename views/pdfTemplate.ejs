@@ -124,31 +124,55 @@
         <h1>Graduation Program Application Form</h1>
         
         <h2>I. Personal Information</h2>
-        <p><span class="lbl">Name:</span> <%= last_name %></p> 
-
-        <p><%= sex %></p>
-        <p><%= date_of_birth %></p>
-        <p><%= birthplace %></p>
+        <h3 style="color: black;" id="name"><%= last_name %></h3>
+        <p><span class="lbl">Sex:</span> <%= sex %></p>
+        <p><span class="lbl">Date of Birth:</span> <%= date_of_birth %></p>
+        <p><span class="lbl">Birthplace:</span> <%= birthplace %></p>
+        <p><span class="lbl">Contact Number:</span> <%= contact_number %></p>
+        <p><span class="lbl">Email:</span> <%= email %></p>
         
-        <h2>Present Address</h2>
+        <h3>Present Address</h3>
         <p><%= present_address %></p>
         
-        <h2>Permanent Address</h2>
+        <h3>Permanent Address</h3>
         <p><%= permanent_address %></p>
         
-        <h2>Citizenship</h2>
+        <h3>Citizenship</h3>
         <p><%= citizenship %></p>
         
-        <h2>Civil Status</h2>
+        <h3>Civil Status</h3>
         <p><%= civil_status %></p>
         
-        <h2>Spouse Information (if applicable)</h2>
+        <h3>Spouse Information (if applicable)</h3>
         <p><%= spouse_name %></p>
         
-        <h2>Children Information (if applicable)</h2>
-        <p><%= child_name_1 %></p>
-        <p><%= child_dob_1 %></p>
-        <p><%= child_sex_1 %></p>
+        <h3>Children Information (if applicable)</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Sex</th>
+            </tr>
+            <%
+            for (let i = 1; ; i++) {
+                try {
+                    if (eval('child_name_' + i) || i == 1) {
+            %>
+                        <tr>
+                            <td><%= eval('child_name_' + i) %></td>
+                            <td><%= eval('child_dob_' + i) %></td>
+                            <td><%= eval('child_sex_' + i) %></td>
+                        </tr>
+            <%
+                    } else {
+                        break;
+                    }
+                } catch (e) {
+                    break;
+                }
+            }
+            %>
+        </table>
         
         <h2>II. Educational Background</h2>
         <table>
@@ -389,12 +413,8 @@
                 <li>I declare that the information given on this form is true and correct.</li>
             </ul>
             <div class="form-group">
-                <label for="signature1">Signature:</label>
-                <canvas id="signature-pad1" class="signature-pad" width="1000" height="200"></canvas>
-                <input type="hidden" name="signature1" id="signature1" value="<%= signature1 %>" required>
-            </div>
-            <div class="form-group">
                 <label for="printed_name">Printed Name:</label>
+                <p>Type your printed name to serve as your signature</p>
                 <input type="text" name="printed_name" id="printed_name" value="<%= printed_name %>" required>
             </div>
             <div class="form-group">
@@ -426,12 +446,8 @@
             <p>I grant my consent to and recognize the authority of the University of the Philippines to process my personal and sensitive personal information, pursuant to the abovementioned Privacy Notice and applicable laws in connection with my application to shift/transfer/ be admitted as a student of University of the Philippines.</p>
             <p>I likewise consent to and recognize University of the Philippines's authority to post online and/or in University of the Philippines bulletin boards at its option my name and program in the event i qualify for admission in order for the University to comply with its Charter and uphold the principle of transparency in the admissions process.</p>
             <div class="form-group">
-                <label for="signature2">Signature:</label>
-                <canvas id="signature-pad2" class="signature-pad" width="1000" height="200"></canvas>
-                <input type="hidden" name="signature2" id="signature2" value="<%= signature2 %>" required>
-            </div>
-            <div class="form-group">
                 <label for="printed_name1">Printed Name:</label>
+                <p>Type your printed name to serve as your signature</p>
                 <input type="text" name="printed_name1" id="printed_name1" value="<%= printed_name1 %>" required>
             </div>
             <div class="form-group">
