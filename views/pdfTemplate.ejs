@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title><%= last_name %></title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             color: #333;
         }
+        .checkbox-container {
+            display: flex;
+            flex-wrap: wrap;
+            }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center; 
+            margin-right: 15px; 
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 5px; 
+            width: 20px; /* Set the width of the checkbox */
+            height: 20px; /* Set the height of the checkbox */
+        }
+
 
         .container {
             width: 80%;
@@ -85,6 +102,13 @@
         .subsection {
             margin-top: 20px;
         }
+
+        .additional-requirements {
+            display: none;
+        }
+        img {
+  max-width: 100%; /* Ensures images don't overflow container */
+}
     </style>
 </head>
 <body>
@@ -111,17 +135,151 @@
                 const signatureInput2 = document.getElementById('signature2');
 
                 if (signaturePads[0].isEmpty() || signaturePads[1].isEmpty()) {
-                    alert("Please provide all signatures first.");
-                    e.preventDefault();
+            
                 } else {
                     signatureInput1.value = signaturePads[0].toDataURL();
                     signatureInput2.value = signaturePads[1].toDataURL();
                 }
             });
+
+            
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var program = "<%= program %>";
+    
+            var sections = document.querySelectorAll('.additional-requirements');
+            sections.forEach(function(section) {
+                if (section.id === program) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
+    
+
     <div class="container">
-        <h1>Graduation Program Application Form</h1>
+        <div class="section">
+            <div class="header">
+               <div class="header-text">
+                   <div class="main-title">University of the Philippines Baguio</div>
+                   <div class="sub-title">Graduate Program Office</div>
+                   <div class="contact-info">
+                    <p><i>Governor Pack Road, Baguio City 2600</i></p>
+                    <p><i>+6374-442-2460 | gpo.upbaguio@up.edu.ph | facebook.com/upbgpo</i></p>
+            
+                </div>
+               </div>
+    
+           </div>
+            <h2><span style="font-weight: bold; color: #004d14;">UPB-GP Form No.1:</span> </h2>
+            <h2 style="font-style: italic; margin-top: -20px; color: #004d14;">Application for Admission to Graduate Programs</h2>
+            <hr>
+            <!-- two box inside a container for instructions -->
+            <div class="column">
+                <div class="form-group">
+                    <label for="Additional_req">Selected program:</label>
+                    <div class="form-group">
+                        <select name="program" onchange="showRequirements()">
+                            <option value=""><%= program %></option>
+                        </select>
+                    </div>
+                </div>
+    
+            </div>
+            <div class="container1">
+                <div class="column1">
+                    <div class="form-group">
+                        <label for="requirements">List of Requirements:</label>
+                        <div class="form-group">
+                            <div class="row">
+                                Complete this form and submit to the UP Baguio GPO with the following attachments:
+                                <ul>
+                                    <li>Original Official Transcript of Records, updated with records of most recent enrollment.</li>
+                                    <li>Three (3) Reference Report Forms- 2 from former professors and 1 from the applicant's immediate supervisor</li>
+                                    <li>Recent 2” x 2” Photo (1 copy to be pasted on application form)</li>
+                                    <li><span style="font-weight: bold;">For working applicants:</span> an official permit from his/her employer/supervisor indicating the maximum number of units the student is allowed to enroll</li>
+                                    <li><span style="font-weight: bold;">For married women:</span> PSA Marriage Certificate</li>
+                                    <li><span style="font-weight: bold;">For foreign applicants:</span> A Test of English as a Foreign Language Certificate (PPT) with a score equivalent to 500 or a Certificate of English as Medium of Instruction from his/her university.</li>
+                                    <li>Original PSA Birth Certificate or Equivalent (for foreign applicants)</li>
+                                    <li>Application and Testing fee (250.00 PHP)</li>
+                                    <li>Receipt Number: <input type="text" name="receipt_number" style="width: 200px;" /></li>
+                                    <li>Note: Foreign applicants are required to pay an additional 20.00 USD on top of the application fee</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <div id="MA_History" class="additional-requirements" <%= program === "MA_History" ? 'style="display:block;"' : 'style="display:none;"' %>>
+                                    <label for="requirements">Additional Requirements for MA History/ MASDS Program:</label>
+                                    <ol>
+                                        <li>A 1 to 3-page concept paper explaining a thesis topic that you would want to work on in the
+                                            future if you are accepted into the program (Arial, 12 pt, 1.5 spacing).
+                                        </li>
+                                        <li>A motivation letter addressed to the following:
+                                            <address>
+                                                MA History or MASDS Graduate Program Committee<br>
+                                                College of Social Sciences<br>
+                                                UP Baguio, Governor Pack Road, Baguio City 2600
+                                            </address>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div id="PhD_Indigenous_Studies" class="additional-requirements" <%= program === "PhD_Indigenous_Studies" ? 'style="display:block;"' : 'style="display:none;"' %>>
+                                    <label for="requirements">Additional Requirements for PhD Indigenous Studies:</label>
+                                    <ul>
+                                        <li>Copy of Diploma from your master’s degree</li>
+                                        <li>Resume/Curriculum Vitae</li>
+                                        <li>A 3–4-page research proposal about a topic that you would want to work on if you are accepted into the program (Arial, 12 pt, 1.5 spacing)</li>
+                                        <li>A letter expressing your intent for applying into the program and elaborating your experience or expectations in working with indigenous communities addressed to the following:
+                                            <address>
+                                                Prof. Leah E. Abayao, Ph.D.<br>
+                                                Dean, College of Social Sciences<br>
+                                                University of the Philippines Baguio<br>
+                                                Gov. Pack Road, Baguio City 2600
+                                            </address>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="MA_Language_Literature" class="additional-requirements" <%= program === "MA_Language_Literature" ? 'style="display:block;"' : 'style="display:none;"' %>>
+                                    <label for="requirements">Additional Requirements for MA Language and Literature:</label>
+                                    <ol>
+                                        <li>A Motivation letter which must:
+                                            <ul>
+                                                <li>be a minimum of 500 words;</li>
+                                                <li>include an outline of research interest and possible research topic for thesis;</li>
+                                                <li>include an outline of possible research methodology; and</li>
+                                                <li>explain reason for the interest in research topic and how the MALL program will contribute to its development.</li>
+                                            </ul>
+                                            Addressed to:
+                                            <address>
+                                                MALL Graduate Program Admissions Committee<br>
+                                                College of Arts and Communication<br>
+                                                University of the Philippines Baguio<br>
+                                                Gov. Pack Road, Baguio City 2600
+                                            </address>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+
+                            
+
+                    </div>
+                </div>
+
+
+            
+            
+            <hr>
         
         <h2>I. Personal Information</h2>
         <h3 style="color: black;" id="name"><%= last_name %></h3>
@@ -455,20 +613,6 @@
             </div>
         </div>
     
-        <div class="section">
-            <h2>For GPC Use Only</h2>
-            <label for="gpc_decision">Tick Decision:</label>
-            <select name="gpc_decision" id="gpc_decision">
-                <option value="">Select Decision</option>
-                <option value="accepted" <%= gpc_decision === 'accepted' ? 'selected' : '' %>>Accepted</option>
-                <option value="conditional_acceptance" <%= gpc_decision === 'conditional_acceptance' ? 'selected' : '' %>>Conditional Acceptance</option>
-                <option value="not_accepted" <%= gpc_decision === 'not_accepted' ? 'selected' : '' %>>Not Accepted</option>
-            </select>
-            <label for="decision_date">Date:</label>
-            <input type="date" name="decision_date" id="decision_date" value="<%= decision_date %>">
-            <label for="remarks_conditions">Remarks/Conditions:</label>
-            <textarea name="remarks_conditions" id="remarks_conditions" rows="3"><%= remarks_conditions %></textarea>
-        </div>
 
     
         <div class="section">
@@ -486,6 +630,33 @@
                 <label for="date_signed1">Date:</label>
                 <input type="date" name="date_signed1" id="date_signed1" value="<%= date_signed1 %>" required>
             </div>
+        </div>
+
+        <!-- Decision Section for GPC Use Only -->
+        <div class="section">
+            <h2>For GPC Use Only (Do not answer if applicant)</h2>
+            <label for="gpc_decision">Tick Decision:</label>
+            <div class="checkbox-container">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="accepted" name="gpc_decision" value="accepted">
+                    <p>Accepted</p>
+                </div>
+            
+                <div class="checkbox-group">
+                    <input type="checkbox" id="conditional_acceptance" name="gpc_decision" value="conditional_acceptance">
+                    <p>Conditional Acceptance</p>
+                </div>
+            
+                <div class="checkbox-group">
+                    <input type="checkbox" id="not_accepted" name="gpc_decision" value="not_accepted">
+                    <p>Not Accepted</p>
+                </div>
+            </div>
+            
+            <label for="decision_date">Date:</label>
+            <input type="text" name="decision_date" id="decision_date">
+            <label for="remarks_conditions">Remarks/Conditions:</label>
+            <textarea name="remarks_conditions" id="remarks_conditions" rows="3"></textarea>
         </div>
 
     </div>
