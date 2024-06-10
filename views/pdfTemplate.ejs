@@ -56,6 +56,11 @@
             color: #800000; /* UP Maroon */
         }
 
+        .lbl{
+            color: #800000; /* UP Maroon */
+            font-weight: bold;
+        }
+
         input[type="text"], input[type="date"], textarea, select {
             width: 100%;
             padding: 8px;
@@ -119,7 +124,8 @@
         <h1>Graduation Program Application Form</h1>
         
         <h2>I. Personal Information</h2>
-        <p><%= last_name %></p>
+        <p><span class="lbl">Name:</span> <%= last_name %></p> 
+
         <p><%= sex %></p>
         <p><%= date_of_birth %></p>
         <p><%= birthplace %></p>
