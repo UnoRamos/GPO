@@ -195,6 +195,7 @@ img {
             let awardCount = 1;
             let organizationCount = 1;
             let seminarCount = 1;
+            let referenceCount = 1;
 
             function addChild() {
                 event.preventDefault();
@@ -351,6 +352,25 @@ img {
                 levelCell.innerHTML = `<input type="text" name="seminar_level_${seminarCount}" />`;
                 participationCell.innerHTML = `<input type="text" name="seminar_participation_${seminarCount}" />`;
                 dateCell.innerHTML = `<input type="date" name="seminar_date_${seminarCount}" />`;
+            }
+
+            document.getElementById('addReferenceButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                addReference();
+            });
+
+            function addReference() {
+                event.preventDefault();
+                referenceCount++;
+                var table = document.getElementById("referenceTable");
+                var row = table.insertRow(-1);
+                var nameCell = row.insertCell(0);
+                var contactCell = row.insertCell(1);
+                var relationshipCell = row.insertCell(2);
+
+                nameCell.innerHTML = '<input type="text" name="reference_' + referenceCount + '" id="reference_' + referenceCount + '">';
+                contactCell.innerHTML = '<input type="text" name="reference_contact_' + referenceCount + '" id="reference_contact_' + referenceCount + '">';
+                relationshipCell.innerHTML = '<input type="text" name="reference_relationship_' + referenceCount + '" id="reference_relationship_' + referenceCount + '">';
             }
 
             document.getElementById('addSeminarButton').addEventListener('click', function(event) {
@@ -795,17 +815,24 @@ img {
 
   
                         <!-- References Section -->
-                        <div class="section">
-                            <h2>VI. References</h2>
-                            <div class="form-group">
-                            <label for="reference_1">Name:</label>
-                            <input type="text" name="reference_1" id="reference_1">
-                            </div>
-                            <div class="form-group">
-                            <label for="reference_2">Contact:</label>
-                            <input type="text" name="reference_2" id="reference_2">
-                            </div>
-                            </div>
+                        <div class="subsection">
+                            <h3>References</h3>
+                            <table id="referenceTable">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Relationship</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="reference_1" id="reference_1"></td>
+                                    <td><input type="text" name="reference_contact_1" id="reference_contact_1"></td>
+                                    <td><input type="text" name="reference_relationship_1" id="reference_relationship_1"></td>
+                                </tr>
+                            </table>
+                            <button id="addReferenceButton">Add Row</button>
+                        </div>
+                        
+                            
                             <div class="section">
                                 <h2>Reasons for Applying to the Program</h2>
                                 <label for="reason_for_applying">Write an essay of 200-300 words on your purpose(s) in seeking admission to the graduate program and what the program can contribute to your current or preferred career:</label>

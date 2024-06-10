@@ -360,6 +360,7 @@
                 %>
             </table>
         </div>
+        
 
         <!-- Seminars/Trainings Section -->
         <div class="subsection">
@@ -393,6 +394,37 @@
                 %>
             </table>
         </div>
+
+        <div class="subsection">
+            <h3>References</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Relationship</th>
+                </tr>
+                <%
+                for (let i = 1; ; i++) {
+                    try {
+                        if (eval('reference_name_' + i) || i == 1) {
+                %>
+                            <tr>
+                                <td><%= eval('reference_name_' + i) %></td>
+                                <td><%= eval('reference_contact_' + i) %></td>
+                                <td><%= eval('reference_relationship_' + i) %></td>
+                            </tr>
+                <%
+                        } else {
+                            break;
+                        }
+                    } catch (e) {
+                        break;
+                    }
+                }
+                %>
+            </table>
+        </div>
+        
 
         
         
