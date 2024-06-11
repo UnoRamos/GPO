@@ -35,7 +35,12 @@ app.post('/generate-pdf', async (req, res) => {
         await page.setContent(html);
         
         // Set a longer timeout duration
-        const pdf = await page.pdf({ format: 'A4', timeout: 9000000 });
+        const pdf = await page.pdf({ format: 'A4', timeout: 9000000, margin: {
+            top: '20px',
+            right: '20px',
+            bottom: '25px',
+            left: '20px'
+        }});
 
         res.set({
             'Content-Type': 'application/pdf',
